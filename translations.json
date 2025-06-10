@@ -1,0 +1,14 @@
+{
+  "es": {
+    "Auditoría Forense Especializada": "Auditoría Forense Especializada",
+    "Plan de Análisis Táctico Inicial": "Plan de Análisis Táctico Inicial",
+    "Plan de Inteligencia Operativa Profunda": "Plan de Inteligencia Operativa Profunda",
+    "Plan Maestro de Inteligencia Corporativa Estratégica": "Plan Maestro de Inteligencia Corporativa Estratégica"
+  },
+  "en": {
+    "Auditoría Forense Especializada": "Forensic Audit Service",
+    "Plan de Análisis Táctico Inicial": "Basic Tactical Analysis Plan",
+    "Plan de Inteligencia Operativa Profunda": "Advanced Operational Intelligence Plan",
+    "Plan Maestro de Inteligencia Corporativa Estratégica": "Strategic Corporate Intelligence Master Plan"
+  }
+}
