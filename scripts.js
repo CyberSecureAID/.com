@@ -1,19 +1,77 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Cargar traducciones desde translations.json (opcional)
-  fetch("translations.json")
+
+    const termsBtn = document.querySelector('.floating-terms');
+  
+  if (termsBtn) { // Verifica que el botón existe
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        termsBtn.style.opacity = '1';
+        termsBtn.style.visibility = 'visible';
+      } else {
+        termsBtn.style.opacity = '0';
+        termsBtn.style.visibility = 'hidden';
+      }
+    });
+    
+    // Inicializa el estado al cargar
+    termsBtn.style.transition = 'opacity 0.3s, visibility 0.3s';
+    termsBtn.style.opacity = window.scrollY > 300 ? '1' : '0';
+    termsBtn.style.visibility = window.scrollY > 300 ? 'visible' : 'hidden';
+  }
+  if ('ontouchstart' in window && termsBtn) {
+    // Optimización para touch devices
+    termsBtn.style.cursor = 'pointer';
+    
+    // Evita el hover no deseado en mobile
+    termsBtn.addEventListener('touchstart', function() {
+      this.classList.add('touching');
+    });
+    
+    termsBtn.addEventListener('touchend', function() {
+      this.classList.remove('touching');
+    });
+  }
+
+   // Cargar traducciones
+  fetch('translations.json')
     .then(response => response.json())
     .then(translations => {
-      document.getElementById("languageSelect").addEventListener("change", function () {
-        const lang = this.value;
-        document.querySelectorAll('.plan-title').forEach(el => {
-          const key = el.dataset.key;
-          el.innerText = translations[lang][key] || key;
+      // Establecer idioma inicial
+      let currentLang = 'es';
+      
+      // Función para cambiar idioma
+      function updateLanguage(lang) {
+        currentLang = lang;
+        document.querySelectorAll('[data-key]').forEach(element => {
+          const key = element.getAttribute('data-key');
+          if (translations[lang] && translations[lang][key]) {
+            element.textContent = translations[lang][key];
+          }
         });
+        
+        // Actualizar contenido sin data-key (ejemplo para elementos especiales)
+        const specialElements = {
+          'description': 'Servicios Profesionales de Investigación Digital y Seguridad Informática',
+          'telegram-link': 'Contáctanos en Telegram'
+        };
+        
+        for (const [id, key] of Object.entries(specialElements)) {
+          const element = document.getElementById(id);
+          if (element && translations[lang] && translations[lang][key]) {
+            element.textContent = translations[lang][key];
+          }
+        }
+      }
+      
+      // Manejar cambio de idioma
+      document.getElementById('languageSelect').addEventListener('change', (e) => {
+        updateLanguage(e.target.value);
       });
+      
+      // Inicializar con español
+      updateLanguage('es');
     })
-    .catch(error => {
-      console.error("No se pudo cargar translations.json:", error);
-    });
+    .catch(error => console.error('Error loading translations:', error));
 
   // Activar búsqueda dinámica en la sección FAQ
   document.getElementById("faqSearch").addEventListener("input", triggerSearch);

@@ -19,17 +19,19 @@
     <header>
       <h1>CyberSecureAID</h1>
       <p class="subtitle">CSID</p>
-      <p class="description">Servicios Profesionales de Investigación Digital y Seguridad Informática</p>
+      <p class="description" id="description" data-key="Servicios Profesionales de Investigación Digital y Seguridad Informática">
+      Servicios Profesionales de Investigación Digital y Seguridad Informática</p>
+
       <!-- Opcional: selector de idioma para traducciones -->
       <select id="languageSelect">
-        <option value="es" selected>Español</option>
-        <option value="en">English</option>
+        <option value="es" selected>🇪🇸 ES</option>
+        <option value="en">🇬🇧 EN</option>
       </select>
     </header>
     
     <!-- Sección de Planes -->
     <section class="services-section">
-      <h2 class="section-title">PLANES</h2>
+      <h2 class="section-title" data-key="PLANES">PLANES</h2>
       <div class="plans-container">
         <!-- Plan 1 -->
         <div class="plan-card">
@@ -37,7 +39,7 @@
           <div class="plan-price">$199</div>
 
           <!-- Botón para abrir la ventana flotante -->
-          <button class="utility-btn" onclick="openModal('modal1')">Ver utilidad</button>
+          <button class="utility-btn" onclick="openModal('modal1')" data-key="Ver Utilidad">Ver Utilidad</button>
 
           <!-- Ventana flotante (modal) -->
         <div class="modal" id="modal1">
@@ -77,7 +79,7 @@
             </li>
           </ul>
           <div class="delivery-time">
-            <strong>Entrega: 48 horas</strong>
+            <strong data-key="delivery_time_plan1">Entrega: 48 horas</strong>
           </div>
         </div>
         
@@ -87,17 +89,21 @@
           <div class="plan-price">$299</div>
           
           <!-- Botón para abrir la ventana flotante -->
-          <button class="utility-btn" onclick="openModal('modal2')">Ver utilidad</button>
+          <button class="utility-btn" onclick="openModal('modal2')" data-key="Ver Utilidad">Ver Utilidad</button>
 
           <!-- Ventana flotante (modal) -->
         <div class="modal" id="modal2">
          <div class="modal-content">
            <span class="close" onclick="closeModal('modal2')">&times;</span>
            <h2>Plan de Análisis Táctico Inicial</h2>
-           <p>¿Alguien te contactó de forma sospechosa? ¿Dudas de la identidad o intenciones de una persona online?
-           <br>Este plan te ayuda a descubrir quién está realmente detrás.<br>
-           Usamos información pública avanzada para ayudarte a confirmar identidades y encontrar datos clave que te ayuden a decidir qué hacer.
-           Sin tecnicismos, solo respuestas.</p>
+           <p>
+            ¿Alguien te contactó de forma sospechosa? ¿Dudas de la identidad o intenciones de una persona online?<br><br>
+            Este plan combina <strong>inteligencia de fuentes abiertas (OSINT)</strong> y análisis de metadatos para:<br>
+            • Confirmar identidades ocultas detrás de perfiles anónimos.<br>
+            • Rastrear actividad sospechosa en redes sociales y plataformas públicas.<br>
+            • Entregarte un informe ejecutivo con datos accionables.<br><br>
+            Ideal para tomar decisiones rápidas con información verificada.
+           </p>
          </div>
         </div>  
 
@@ -124,28 +130,35 @@
             </li>
           </ul>
           <div class="delivery-time">
-            <strong>Entrega: 48-72 horas</strong>
+            <strong data-key="delivery_time_plan2">Entrega: 48-72 horas</strong>
           </div>
         </div>
         
         <!-- Plan 3: Premium "Más Popular" -->
         <div class="plan-card premium">
-          <div class="premium-badge">Más Popular</div>
+          <div class="premium-badge" data-key="Más Popular">Más Popular</div>
           <h3 class="plan-title" data-key="Plan de Inteligencia Operativa Profunda">Plan de Inteligencia Operativa Profunda</h3>
           <div class="plan-price">$499</div>
 
           <!-- Botón para abrir la ventana flotante -->
-          <button class="utility-btn" onclick="openModal('modal3')">Ver utilidad</button>
+          <button class="utility-btn" onclick="openModal('modal3')" data-key="Ver Utilidad">Ver Utilidad</button>
 
           <!-- Ventana flotante (modal) -->
         <div class="modal" id="modal3">
          <div class="modal-content">
            <span class="close" onclick="closeModal('modal3')">&times;</span>
            <h2>Plan de Inteligencia Operativa Profunda</h2>
-           <p>¿Alguien te contactó de forma sospechosa? ¿Dudas de la identidad o intenciones de una persona online?
-           <br>Este plan te ayuda a descubrir quién está realmente detrás.<br>
-           Usamos información pública avanzada para ayudarte a confirmar identidades y encontrar datos clave que te ayuden a decidir qué hacer.
-           Sin tecnicismos, solo respuestas.</p>
+           <p>
+             ¿Necesitas un <strong>análisis completo</strong> de una persona, entidad o amenaza digital?<br><br>
+             Este plan combina <strong>rastreo en profundidad</strong> y <strong>perfilado conductual</strong> para:<br>
+             • Reconstruir la huella digital del objetivo en redes públicas, foros y bases de datos.<br>
+             • Identificar patrones de comportamiento, conexiones ocultas y vulnerabilidades explotables.<br>
+             • Generar un <strong>informe ejecutivo</strong> con estrategias de mitigación de riesgos.<br><br>
+             Ideal para:<br>
+             - Casos de <strong>suplantación de identidad</strong> o fraude elaborado.<br>
+             - Due diligence <strong>antes de tomar decisiones críticas</strong>.<br>
+             - Protección contra <strong>amenazas persistentes</strong> (ej: acoso digital, espionaje).
+           </p>
          </div>
         </div>
 
@@ -175,7 +188,7 @@
             </li>
           </ul>
           <div class="delivery-time">
-            <strong>Entrega: 24 horas</strong>
+            <strong data-key="delivery_time_plan3">Entrega: 24 horas</strong>
           </div>
         </div>
         
@@ -186,17 +199,24 @@
           <div class="plan-price">$3000</div>
 
           <!-- Botón para abrir la ventana flotante -->
-          <button class="utility-btn" onclick="openModal('modal4')">Ver utilidad</button>
+          <button class="utility-btn" onclick="openModal('modal4')" data-key="Ver Utilidad">Ver Utilidad</button>
 
           <!-- Ventana flotante (modal) -->
         <div class="modal" id="modal4">
          <div class="modal-content">
            <span class="close" onclick="closeModal('modal4')">&times;</span>
-           <h2>Plan Maestro de Inteligencia Corporativa Estratégica</h2>
-           <p>¿Alguien te contactó de forma sospechosa? ¿Dudas de la identidad o intenciones de una persona online?
-           <br>Este plan te ayuda a descubrir quién está realmente detrás.<br>
-           Usamos información pública avanzada para ayudarte a confirmar identidades y encontrar datos clave que te ayuden a decidir qué hacer.
-           Sin tecnicismos, solo respuestas.</p>
+           <h2>Plan Maestro de Inteligencia Corporativa</h2>
+           <p> 
+             Solución <strong>para empresas que exigen máxima seguridad proactiva</strong>:<br><br>
+             • <strong>Análisis de riesgos</strong>: Evaluación de amenazas a reputación, infraestructura o datos sensibles.<br>
+             • <strong>Detección temprana</strong> de ataques coordinados, fugas de información o infiltraciones.<br>
+             • <strong>Mapa estratégico</strong> del entorno digital (competencia, actores maliciosos, vulnerabilidades).<br><br>
+             Incluye:<br>
+             - Técnicas de <strong>OSINT avanzado</strong> y correlación de fuentes abiertas/privadas.<br>
+             - Alertas en tiempo real sobre <strong>incidentes críticos</strong>.<br>
+             - Recomendaciones <strong>para ganar ventaja competitiva</strong>.<br><br>
+            <em>«No solo protegemos tu negocio: te ayudamos a dominar el juego.»</em>
+           </p>
          </div> 
          </div>
           
@@ -224,7 +244,7 @@
             </li>
           </ul>
           <div class="delivery-time">
-            <strong>Entrega: 3 a 5 días</strong>
+            <strong data-key="delivery_time_plan4">Entrega: 3 a 5 días</strong>
           </div>
         </div>
       </div>
@@ -232,37 +252,37 @@
     
     <!-- Sección "¿Por Qué Elegirnos?" -->
     <section class="why-choose-us">
-      <h2 class="section-title">¿Por Qué Elegirnos?</h2>
+      <h2 class="section-title" data-key="why_choose_us_title">¿Por Qué Elegirnos?</h2>
       <div class="features-grid">
-        <div class="feature-item">
+        <div class="feature-item" data-key="feature_confidentiality">
           <div class="feature-icon">🔒</div>
-          <h4>Confidencialidad Total</h4>
-          <p>Máxima seguridad y discreción en todos nuestros procesos de investigación</p>
+          <h4 data-key="confidentiality_title">Confidencialidad Total</h4>
+          <p data-key="confidentiality_desc">Máxima seguridad y discreción en todos nuestros procesos de investigación</p>
         </div>
-        <div class="feature-item">
+        <div class="feature-item" data-key="feature_technology">
           <div class="feature-icon">⚡</div>
-          <h4>Tecnología Avanzada</h4>
-          <p>Algoritmos de última generación para análisis preciso y detallado</p>
+          <h4 data-key="technology_title">Tecnología Avanzada</h4>
+          <p data-key="technology_desc">Algoritmos de última generación para análisis preciso y detallado</p>
         </div>
-        <div class="feature-item">
+        <div class="feature-item" data-key="feature_accuracy">
           <div class="feature-icon">🎯</div>
-          <h4>Precisión Garantizada</h4>
-          <p>Resultados verificados y de alta calidad respaldados por expertos</p>
+          <h4 data-key="accuracy_title">Precisión Garantizada</h4>
+          <p data-key="accuracy_desc">Resultados verificados y de alta calidad respaldados por expertos</p>
         </div>
-        <div class="feature-item">
+        <div class="feature-item" data-key="feature_delivery">
           <div class="feature-icon">🚀</div>
-          <h4>Entrega Rápida</h4>
-          <p>Tiempos de respuesta optimizados sin comprometer la calidad del análisis</p>
+          <h4 data-key="delivery_title">Entrega Rápida</h4>
+          <p data-key="delivery_desc">Tiempos de respuesta optimizados sin comprometer la calidad del análisis</p>
         </div>
-        <div class="feature-item">
+        <div class="feature-item" data-key="feature_support">
           <div class="feature-icon">💼</div>
-          <h4>Soporte Profesional</h4>
-          <p>Asesoramiento experto durante todo el proceso de investigación</p>
+          <h4 data-key="support_title">Soporte Profesional</h4>
+          <p data-key="support_desc">Asesoramiento experto durante todo el proceso de investigación</p>
         </div>
-        <div class="feature-item">
+        <div class="feature-item"data-key="feature_analysis">
           <div class="feature-icon">🔍</div>
-          <h4>Análisis Exhaustivo</h4>
-          <p>Cobertura completa de fuentes digitales y análisis forense especializado</p>
+          <h4 data-key="analysis_title">Análisis Exhaustivo</h4>
+          <p data-key="analysis_desc">Cobertura completa de fuentes digitales y análisis forense especializado</p>
         </div>
       </div>
     </section>
@@ -271,33 +291,33 @@
     <section class="stats-section">
       <div class="stat-item">
         <div class="stat-number">327+</div>
-        <div class="stat-label">Análisis Completados</div>
+        <div class="stat-label" data-key="Análisis Completados">Análisis Completados</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">98%</div>
-        <div class="stat-label">Precisión Garantizada</div>
+        <div class="stat-label" data-key="Precisión Garantizada">Precisión Garantizada</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">24h</div>
-        <div class="stat-label">Entrega Promedio</div>
+        <div class="stat-label" data-key="Entrega Promedio">Entrega Promedio</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">100%</div>
-        <div class="stat-label">Confidencialidad</div>
+        <div class="stat-label" data-key="Confidencialidad">Confidencialidad</div>
       </div>
     </section>
     
     <!-- Sección de testimonios -->
     <section class="testimonials">
-      <h2 class="section-title">Información Importante</h2>
+      <h2 class="section-title" data-key="Información Importante">Información Importante</h2>
       <div class="testimonial-card">
-        <div class="testimonial-text">
+        <div class="testimonial-text" data-key="testimonio_1">
           "Durante una operación de rastreo, el sujeto generalmente se mueve, y su ubicación puede cambiar en pocas horas tras el reporte inicial del análisis."
         </div>
         <div class="testimonial-author"></div>
       </div>
       <div class="testimonial-card">
-        <div class="testimonial-text">
+        <div class="testimonial-text" data-key="testimonio_2">
           "Es importante tener en cuenta que el tiempo es esencial; una respuesta rápida puede marcar la diferencia en la efectividad del rastreo y análisis forense."
         </div>
         <div class="testimonial-author"></div>
@@ -316,10 +336,22 @@
     
     <!-- Pie de página -->
     <footer>
-      <p>Servicios Profesionales de Investigación Digital</p>
+      <p data-key="Servicios Profesionales de Investigación Digital">Servicios Profesionales de Investigación Digital</p>
       <p><a href="target=&quot;_blank&quot;"></a></p>
-      <p>Contáctanos en Telegram: <a class="telegram-link" href="https://t.me/CyberSecureAID" target="_blank">@CyberSecureAID</a></p>
+      <p>
+        <span data-key="Contáctanos en Telegram">Contáctanos en Telegram</span>: <a class="telegram-link" href="https://t.me/CyberSecureAID" target="_blank">@CyberSecureAID</a></p>
     </footer>
   </div>
+
+ <!-- Botón flotante mejorado -->
+  <div class="floating-terms">
+  <a href="docs/Terminos_CyberSecureAID.pdf" target="_blank" class="terms-btn" aria-label="Términos y Condiciones">
+    <svg class="terms-icon" aria-hidden="true" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+    </svg>
+    <span class="terms-text">Términos y Condiciones</span>
+  </a>
+</div>
+
 </body>
 </html>

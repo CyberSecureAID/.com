@@ -103,6 +103,24 @@ h1 {
   line-height: 1.5;
 }
 
+#languageSelect {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  background: linear-gradient(45deg, #00ffff, #ff00ff);
+  color: white;
+  font-size: 1rem;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#languageSelect:hover {
+  filter: brightness(1.2);
+}
+
 /* Secciones */
 .services-section,
 .faq-section,
@@ -158,6 +176,7 @@ h1 {
   mask-composite: exclude;
   opacity: 0;
   transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 .plan-card:hover::before {
@@ -644,5 +663,186 @@ details[open] {
   top: 10px;
   font-size: 28px;
   cursor: pointer;
+}
+/* Botón flotante premium */
+.floating-terms {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.floating-terms:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 6px 16px rgba(0,0,0,0.2));
+}
+
+.terms-btn {
+  background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95em;
+  font-weight: 500;
+  border: 2px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.terms-btn:hover {
+  background: linear-gradient(135deg, #1a2634 0%, #3a526f 100%);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.terms-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* Efecto de aparición suave */
+@keyframes floatIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Botón flotante premium */
+.floating-terms {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.floating-terms:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 6px 16px rgba(0,0,0,0.2));
+}
+
+.terms-btn {
+  background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95em;
+  font-weight: 500;
+  border: 2px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.terms-btn:hover {
+  background: linear-gradient(135deg, #1a2634 0%, #3a526f 100%);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.terms-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* Efecto de aparición suave */
+@keyframes floatIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.floating-terms {
+  animation: floatIn 0.6s ease-out forwards;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .floating-terms {
+    bottom: 15px;
+    right: 15px;
+  }
+  .terms-btn span {
+    display: none;
+  }
+  .terms-btn {
+    padding: 14px;
+    border-radius: 50%;
+  }
+  /* Versión Mobile - Se activa en pantallas menores a 768px */
+@media (max-width: 768px) {
+  .floating-terms {
+    bottom: 20px;
+    right: 15px;
+    left: auto; /* Asegura posición fija en derecha */
+  }
+
+  .terms-btn {
+    width: 56px; /* Tamaño táctil óptimo */
+    height: 56px;
+    padding: 0;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .terms-text {
+    display: none; /* Oculta el texto */
+  }
+
+  .terms-icon {
+    width: 24px; /* Icono más grande para dedos */
+    height: 24px;
+    margin: 0 auto; /* Centrado perfecto */
+  }
+
+  /* Efecto pulsante para mejor descubrimiento */
+  @keyframes pulse-mobile {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+
+  .floating-terms.visible {
+    animation: floatIn 0.6s ease-out, pulse-mobile 2s infinite 2s;
+  }
+  .terms-btn:active {
+  transform: scale(0.95) !important;
+  background: linear-gradient(135deg, #1e3a8a 0%, #172554 100%) !important;
+  transition: transform 0.1s ease;
+}
+.mobile-tooltip {
+  display: none;
+  position: absolute;
+  right: 70px;
+  background: #2c3e50;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .terms-btn:hover .mobile-tooltip,
+  .terms-btn:focus .mobile-tooltip {
+    display: block;
+    animation: fadeIn 0.3s ease-out;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+}
 }
 }
