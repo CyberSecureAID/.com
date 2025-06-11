@@ -1,0 +1,34 @@
+# Archivos del sistema (macOS / Windows / Linux)
+.DS_Store
+Thumbs.db
+
+# Node.js (si en el futuro usas npm o dependencias)
+node_modules/
+package-lock.json
+
+# Caché de navegadores y compilaciones temporales
+*.log
+*.cache
+*.tmp
+
+# Archivos del editor (VS Code, JetBrains, etc.)
+.vscode/
+.idea/
+*.swp
+
+# Configuración de Git local (no subir credenciales)
+.gitconfig
+
+# Exclusión de archivos generados por herramientas (si aplican)
+dist/
+build/
+coverage/
+
+# Excluir archivos de documentación generados
+docs/*.pdf
+
+# Evitar archivos de configuraciones específicas de entorno
+.env
+
+# Excluir README.md del repositorio
+README.md
