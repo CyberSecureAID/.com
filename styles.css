@@ -103,23 +103,28 @@ h1 {
   line-height: 1.5;
 }
 
-#languageSelect {
+#languageFlag {
   position: fixed;
-  top: 15px;
-  right: 20px;
-  background: linear-gradient(45deg, #00ffff, #ff00ff);
-  color: white;
-  font-size: 1rem;
-  padding: 8px 12px;
-  border-radius: 10px;
-  border: none;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 20px;
   cursor: pointer;
+  border-radius: 5px;
   transition: all 0.3s ease;
+  opacity: 0.9;
+  object-fit: cover;
+  border: 2px solid transparent; /* Borde inicial transparente */
+  background-image: linear-gradient(white, white), linear-gradient(45deg, #00ffff, #ff00ff);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
 }
 
-#languageSelect:hover {
+#languageFlag:hover {
   filter: brightness(1.2);
+  opacity: 1;
 }
+
 
 /* Secciones */
 .services-section,
