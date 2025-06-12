@@ -30,5 +30,8 @@ docs/*.pdf
 # Evitar archivos de configuraciones específicas de entorno
 .env
 
+# Excluir la carpeta de pruebas locales
+tests/
+
 # Excluir README.md del repositorio
 README.md
