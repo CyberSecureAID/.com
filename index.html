@@ -5,9 +5,9 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>CyberSecureAID - CSID</title>
   <!-- Vincular archivo de estilos -->
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles_prueba.css" />
   <!-- Vincular archivo Javascript -->
-  <script src="scripts.js" defer></script>
+  <script src="scripts_prueba.js" defer></script>
 </head>
 <body>
   <!-- Estrellas y malla tecnológica -->
@@ -278,13 +278,17 @@
 
  <!-- Botón flotante mejorado -->
   <div class="floating-terms">
-  <a href="docs/Terminos_CyberSecureAID.pdf" target="_blank" class="terms-btn" aria-label="Términos y Condiciones">
-    <svg class="terms-icon" aria-hidden="true" viewBox="0 0 24 24">
+  <button class="terms-btn" aria-label="Términos y Condiciones">
+    <svg class="terms-icon" viewBox="0 0 24 24">
       <path fill="currentColor" d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
     </svg>
     <span class="terms-text">Términos y Condiciones</span>
-  </a>
-</div>
+  </button>
 
+<div id="termsMenu" class="terms-dropdown">
+    <a href="docs/Terminos_CyberSecureAID.pdf" target="_blank">📄 Descargar PDF</a>
+    <a href="legal.html" target="_blank">⚖️ Cláusula Legal</a>
+</div>
+</div>
 </body>
 </html>

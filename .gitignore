@@ -32,6 +32,9 @@ docs/*.pdf
 
 # Excluir la carpeta de pruebas locales
 tests/
+index_prueba.html
+scripts_prueba.js
+styles_prueba.css
 
 # Excluir README.md del repositorio
 README.md

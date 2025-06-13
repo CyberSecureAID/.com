@@ -129,3 +129,35 @@ document.querySelectorAll('.faq-result-card .faq-question').forEach(question => 
 });
 
 }
+
+function toggleLegalMenu() {
+  const menu = document.getElementById("termsMenu");
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+// Opcional: cerrar si haces clic fuera
+document.addEventListener("click", function (e) {
+  const btn = document.querySelector(".terms-btn");
+  const menu = document.getElementById("termsMenu");
+
+  if (!btn.contains(e.target) && !menu.contains(e.target)) {
+    menu.style.display = "none";
+  }
+});
+
+// Control del submenú de Términos y Condiciones
+  const termsButton = document.querySelector('.terms-btn');
+  const termsMenu = document.getElementById('termsMenu');
+
+  if (termsButton && termsMenu) {
+    termsButton.addEventListener('click', function (e) {
+      e.stopPropagation(); // evita cierre inmediato si clicas el botón
+      termsMenu.style.display = termsMenu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!termsMenu.contains(e.target)) {
+        termsMenu.style.display = 'none';
+      }
+    });
+  }
