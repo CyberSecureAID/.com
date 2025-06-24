@@ -161,3 +161,9 @@ document.addEventListener("click", function (e) {
       }
     });
   }
+function flipCard(button) {
+  const card = button.closest(".plan-card");
+  if (card) {
+    card.classList.toggle("flipped");
+  }
+}
