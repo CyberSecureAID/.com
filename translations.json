@@ -9,6 +9,9 @@
     "Ver Utilidad": "Ver Utilidad",
     "back_button": "Volver",
     "Más Popular": "Más Popular",
+    "more_info": "Más información",
+
+    "plan1_alert": "Para realizar esta auditoría, se recomienda proporcionar:\n\n• Archivos sospechosos (documentos, imágenes, aplicaciones).\n• Capturas de pantalla o registros de actividad relevantes.\n• Perfiles, direcciones IP o dispositivos involucrados.\n• Descripción detallada del incidente o sospecha.\n• Cualquier dato complementario que ayude a contextualizar la investigación.\n\n🛈 Nota: Si no se entrega toda la información, aún realizaremos el análisis, pero los resultados podrían ser menos completos.",
 
     "plan1_feature1": "Análisis estructural y de integridad en dispositivos móviles confiscados o disponibles",
     "plan1_feature2": "Examen técnico para detección de anomalías de seguridad operativa",
@@ -138,6 +141,9 @@
     "Ver Utilidad": "View Utility",
     "back_button": "Back",
     "Más Popular": "More Popular",
+    "more_info": "More Info",
+
+    "plan1_alert": "To carry out this audit, we recommend providing:\n\n• Suspicious files (documents, images, apps).\n• Screenshots or relevant activity logs.\n• Profiles, IP addresses, or involved devices.\n• A detailed description of the incident or suspicion.\n• Any additional data that helps contextualize the investigation.\n\n🛈 Note: If not all information is provided, we will still conduct the analysis, though results may be less complete.",
 
     "plan1_feature1": "Structural and integrity analysis of mobile devices confiscated or available",
     "plan1_feature2": "Technical examination for detection of security operational anomalies",
