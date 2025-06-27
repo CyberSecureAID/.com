@@ -11,8 +11,6 @@
     "Más Popular": "Más Popular",
     "more_info": "Más información",
 
-    "plan1_alert": "Para realizar esta auditoría, se recomienda proporcionar:\n\n• Archivos sospechosos (documentos, imágenes, aplicaciones).\n• Capturas de pantalla o registros de actividad relevantes.\n• Perfiles, direcciones IP o dispositivos involucrados.\n• Descripción detallada del incidente o sospecha.\n• Cualquier dato complementario que ayude a contextualizar la investigación.\n\n🛈 Nota: Si no se entrega toda la información, aún realizaremos el análisis, pero los resultados podrían ser menos completos.",
-
     "plan1_feature1": "Análisis estructural y de integridad en dispositivos móviles confiscados o disponibles",
     "plan1_feature2": "Examen técnico para detección de anomalías de seguridad operativa",
     "plan1_feature3": "Revisión integral de configuraciones y protocolos de seguridad digital",
@@ -24,6 +22,8 @@
     "plan1_feature9": "Opinión técnica documentada apta para procesos internos",
     "plan1_feature10": "Soporte técnico especializado para interpretación de resultados",
 
+    "plan1_alert": "Para realizar esta auditoría, se recomienda proporcionar:\n\n• Archivos sospechosos (documentos, imágenes, aplicaciones).\n• Capturas de pantalla o registros de actividad relevantes.\n• Perfiles, direcciones IP o dispositivos involucrados.\n• Descripción detallada del incidente o sospecha.\n• Cualquier dato complementario que ayude a contextualizar la investigación.\n\n🛈 Nota: Si no se entrega toda la información, aún realizaremos el análisis, pero los resultados podrían ser menos completos.",
+
     "plan2_feature1": "Exploración avanzada de fuentes abiertas para recolectar rastros digitales útiles",
     "plan2_feature2": "Extracción contextual de metadatos digitales a partir de archivos, imágenes y enlaces",
     "plan2_feature3": "Inferencia aproximada de ubicación con base en indicadores técnicos y sociales",
@@ -31,6 +31,8 @@
     "plan2_feature5": "Verificación estructurada de identidades mediante coincidencias cruzadas",
     "plan2_feature6": "Reporte digitalizado con estructura ejecutiva en formato PDF",
     "plan2_feature7": "Una consulta puntual vía correo para análisis posterior",
+
+    "plan2_alert": "Para ejecutar este análisis, se recomienda proporcionar:\n\n• Nombre, alias o identificador del sujeto o entidad.\n• Perfiles de redes sociales (links, capturas o nombres).\n• Imágenes o archivos relevantes con metadatos.\n• Enlaces relacionados o menciones públicas.\n• Objetivo específico del análisis (ubicación, identidad, etc.).\n\n🛈 Nota: La falta de alguno de estos elementos no impide el análisis, pero puede limitar su profundidad.",
 
     "plan3_feature1": "Investigación multicapa sobre ecosistemas digitales públicos y semiestructurados",
     "plan3_feature2": "Análisis cruzado en bases de datos abiertas y archivos históricos digitalizados",
@@ -43,6 +45,8 @@
     "plan3_feature9": "Seguimiento de comportamiento digital por 7 días continuos",
     "plan3_feature10": "Asistencia experta en interpretación y toma de decisiones",
 
+    "plan3_alert": "Para desplegar esta operación avanzada, se recomienda:\n\n• Perfiles profesionales o técnicos vinculados.\n• Registros históricos, publicaciones o actividades públicas.\n• Datos cruzados como correos, empresas, ubicaciones.\n• Objetivo del estudio: riesgo, reputación, vigilancia, etc.\n• Criterios de segmentación o eventos sospechosos detectados.\n\n🛈 Nota: Con menos datos, la investigación se realiza igual, aunque con posible reducción en precisión.",
+
     "plan4_feature1": "Análisis heurístico de comportamiento digital sobre grandes volúmenes de datos abiertos empresariales",
     "plan4_feature2": "Segmentación automatizada de trazas digitales provenientes de redes sociales, plataformas de colaboración y medios públicos",
     "plan4_feature3": "Correlación geotécnica para inferir zonas de actividad con patrones sospechosos a partir de metadatos técnicos",
@@ -50,7 +54,9 @@
     "plan4_feature5": "Representación gráfica avanzada de mapas de calor digital y líneas temporales de comportamiento",
     "plan4_feature6": "Algoritmo de detección de riesgo adaptativo con alertas automatizadas de eventos críticos",
     "plan4_feature7": "Informe ejecutivo visual + reporte técnico descriptivo con respaldo metodológico",
-    "plan4_feature8": "Proceso de contextualización de patrones para asesoramiento interno (sin intervención directa)",   
+    "plan4_feature8": "Proceso de contextualización de patrones para asesoramiento interno (sin intervención directa)", 
+    
+    "plan4_alert": "Para ejecutar este análisis de alto nivel, se recomienda:\n\n• Fuentes abiertas internas o externas con datos empresariales.\n• Logs, registros de actividad, trazas digitales o datos públicos.\n• Indicadores técnicos: IPs, perfiles corporativos, sistemas.\n• Objetivo del estudio: riesgo, reputación, vigilancia, etc.\n• Criterios de segmentación o eventos sospechosos detectados.\n\n🛈 Nota: Si parte de esta información no está disponible, adaptaremos el análisis al contexto posible.",
 
     "delivery_time_plan1": "Entrega: 48 horas",
     "delivery_time_plan2": "Entrega: 48-72 horas",
@@ -143,8 +149,6 @@
     "Más Popular": "More Popular",
     "more_info": "More Info",
 
-    "plan1_alert": "To carry out this audit, we recommend providing:\n\n• Suspicious files (documents, images, apps).\n• Screenshots or relevant activity logs.\n• Profiles, IP addresses, or involved devices.\n• A detailed description of the incident or suspicion.\n• Any additional data that helps contextualize the investigation.\n\n🛈 Note: If not all information is provided, we will still conduct the analysis, though results may be less complete.",
-
     "plan1_feature1": "Structural and integrity analysis of mobile devices confiscated or available",
     "plan1_feature2": "Technical examination for detection of security operational anomalies",
     "plan1_feature3": "Comprehensive review of digital security configurations and protocols",
@@ -156,6 +160,8 @@
     "plan1_feature9": "Technical opinion documented for internal processes",
     "plan1_feature10": "Specialized technical support for interpretation of results",
 
+    "plan1_alert": "To carry out this audit, we recommend providing:\n\n• Suspicious files (documents, images, apps).\n• Screenshots or relevant activity logs.\n• Profiles, IP addresses, or involved devices.\n• A detailed description of the incident or suspicion.\n• Any additional data that helps contextualize the investigation.\n\n🛈 Note: If not all information is provided, we will still conduct the analysis, though results may be less complete.",
+
     "plan2_feature1": "Advanced exploration of open sources to collect useful digital traces",
     "plan2_feature2": "Contextual extraction of digital metadata from files, images, and links",
     "plan2_feature3": "Approximate location inference based on technical and social indicators",
@@ -163,6 +169,8 @@
     "plan2_feature5": "Structured identity verification through cross-references",
     "plan2_feature6": "Digitalized report with executive summary in PDF format",
     "plan2_feature7": "One-time query via email for post-analysis", 
+
+    "plan2_alert": "To conduct this analysis, we recommend providing:\n\n• Name, alias, or subject identifier.\n• Social media profiles (links, screenshots, or usernames).\n• Relevant images or files with metadata.\n• Related links or public mentions.\n• Specific objective of the analysis (location, identity, etc.).\n\n🛈 Note: Missing any of these elements will not prevent the analysis, but may limit its depth.",
 
     "plan3_feature1": "Multi-faceted investigation of public digital ecosystems and semistructured environments",
     "plan3_feature2": "Cross-referenced analysis of open databases and digital historical files",
@@ -173,7 +181,9 @@
     "plan3_feature7": "Public activity reconstruction with temporal continuity",
     "plan3_feature8": "Unlimited personalized queries through verified channels",
     "plan3_feature9": "Continuous tracking of digital behavior for 7 days",
-    "plan3_feature10": "Expert support in interpretation and decision-making",    
+    "plan3_feature10": "Expert support in interpretation and decision-making",
+    
+    "plan3_alert": "To deploy this advanced operation, we recommend:\n\n• Professional or technical-related profiles.\n• Historical records, publications, or public activities.\n• Cross-linked emails, companies, locations.\n• Study objective: risk, reputation, monitoring, etc.\n• Segmentation criteria or detected suspicious events.\n\n🛈 Note: With less data, the investigation is carried out equally, although with possible reduction in precision.",
 
     "plan4_feature1": "Heuristic analysis of digital behavior across large volumes of open business data",
     "plan4_feature2": "Automated segmentation of digital traces from social networks, collaboration platforms, and public media",
@@ -182,7 +192,9 @@
     "plan4_feature5": "Advanced graphical representation of heat maps and temporal behavior lines",
     "plan4_feature6": "Adaptive risk detection algorithm with automated alerts for critical events",
     "plan4_feature7": "Executive-level report + technical report with methodological support",
-    "plan4_feature8": "Process of contextualization of patterns for internal advisory (without direct intervention)",   
+    "plan4_feature8": "Process of contextualization of patterns for internal advisory (without direct intervention)", 
+    
+    "plan4_alert": "To perform this high-level analysis, we recommend:\n\n• Internal or external open sources with corporate data.\n• Logs, activity records, digital traces, or public data.\n• Technical indicators: IPs, corporate profiles, systems.\n• Objective of the study: risk, reputation, surveillance, etc.\n• Segmentation criteria or detected suspicious events.\n\n🛈 Note: If some of this information is missing, we will adapt the analysis to the available context.",
 
     "delivery_time_plan1": "Delivery: 48 hours",
     "delivery_time_plan2": "Delivery: 48-72 hours",
