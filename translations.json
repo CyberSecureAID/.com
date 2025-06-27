@@ -7,6 +7,7 @@
     "Plan de Inteligencia Operativa Profunda": "Plan de Inteligencia Operativa Profunda",
     "Plan Maestro de Inteligencia Corporativa Estratégica": "Plan Maestro de Inteligencia Corporativa Estratégica",
     "Ver Utilidad": "Ver Utilidad",
+    "back_button": "Volver",
     "Más Popular": "Más Popular",
 
     "delivery_time_plan1": "Entrega: 48 horas",
@@ -45,7 +46,7 @@
     "Servicios Profesionales de Investigación Digital": "Servicios Profesionales de Investigación Digital",
     "Contáctanos en Telegram": "Contáctanos en Telegram",
     "terms_label": "Términos y Condiciones",
-    "download_pdf": "Descargar PDF",
+    "download_pdf": "📄 Descargar PDF",
     "legal_clause": "⚖️ Cláusula Legal"
   },
   "us": {
@@ -56,6 +57,7 @@
     "Plan de Inteligencia Operativa Profunda": "Advanced Operative Intelligence Plan",
     "Plan Maestro de Inteligencia Corporativa Estratégica": "Master Strategic Corporate Intelligence Plan",
     "Ver Utilidad": "View Utility",
+    "back_button": "Back",
     "Más Popular": "More Popular",
 
     "delivery_time_plan1": "Delivery: 48 hours",
@@ -95,7 +97,7 @@
     "Servicios Profesionales de Investigación Digital": "Professional Digital Investigation Services",
     "Contáctanos en Telegram": "Contact us on Telegram",
     "terms_label": "Terms and Conditions",
-    "download_pdf": "Download PDF",
+    "download_pdf": "📄 Download PDF",
     "legal_clause": "⚖️ Legal Clause"
 
   }
