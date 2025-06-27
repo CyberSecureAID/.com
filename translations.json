@@ -47,8 +47,48 @@
     "Contáctanos en Telegram": "Contáctanos en Telegram",
     "terms_label": "Términos y Condiciones",
     "download_pdf": "📄 Descargar PDF",
-    "legal_clause": "⚖️ Cláusula Legal"
+    "legal_clause": "⚖️ Cláusula Legal",
+
+    "legal_title": "📜 Sección Legal",
+    "legal_subtitle": "Conoce nuestros Términos y Condiciones",
+
+    "section1_title": "▎1. Términos y Condiciones",
+    "section1_1_title": "▎1.1 Aceptación de los Términos",
+    "section1_1_text": "Al acceder y utilizar este sitio web, aceptas cumplir con estos términos y condiciones. Si no estás de acuerdo con alguno de estos términos, te recomendamos que no utilices nuestros servicios.",
+    
+    "section2_title": "▎2. Limitación de Responsabilidad",
+    "section2_1_title": "▎2.1 Responsabilidad del Cliente",
+    "section2_1_text": "El cliente debe tener legitimación para solicitar la investigación. Esto significa que el cliente debe ser el titular de los derechos o tener la autorización necesaria para realizar la investigación solicitada. CyberSecureAID no asume ninguna responsabilidad por las consecuencias legales que puedan derivarse del uso indebido de nuestros servicios. Es responsabilidad del cliente asegurarse de que su solicitud cumpla con todas las leyes aplicables y que tenga la debida autorización para llevar a cabo la investigación.",
+    "section2_2_title": "▎2.2 Exención de Responsabilidad",
+    "section2_2_text": "CyberSecureAID no será responsable por cualquier daño directo, indirecto, incidental o consecuente que resulte del uso o la incapacidad para usar nuestros servicios, incluso si se nos ha informado sobre la posibilidad de tales daños.",
+
+    "section3_title": "▎3. Cláusula de Legalidad",
+    "section3_text": "“CyberSecureAID no realiza intervenciones ilegales, hackeo no autorizado ni acciones que infrinjan leyes de privacidad digital. Todos los servicios se realizan sobre fuentes abiertas, dispositivos propios o bajo autorización escrita del interesado.”",
+
+    "section4_title": "▎4. Propiedad Intelectual",
+    "section4_1_title": "▎4.1 Derechos de Autor",
+    "section4_1_text": "Todo el contenido de este sitio web, incluyendo textos, gráficos, logotipos y software, es propiedad de CyberSecureAID o de sus licenciantes y está protegido por las leyes de derechos de autor.",
+
+    "section4_2_title": "▎4.2 Uso Permitido",
+    "section4_2_text": "Se permite el uso personal y no comercial del contenido del sitio web, siempre que se mantengan todos los avisos de propiedad intelectual.",
+
+    "section5_title": "▎5. Política de Privacidad",
+    "section5_1_title": "▎5.1 Recopilación de Datos",
+    "section5_1_text": "Recopilamos información personal solo cuando es necesaria para proporcionar nuestros servicios. Esta información se maneja conforme a nuestra Política de Privacidad.",
+    
+    "section5_2_title": "▎5.2 Uso de la Información",
+    "section5_2_text": "La información recopilada se utiliza exclusivamente para los fines establecidos en nuestra Política de Privacidad y no se comparte con terceros sin el consentimiento del usuario.",
+
+    "section6_title": "▎6. Modificaciones a los Términos",
+    "section6_text": "CyberSecureAID se reserva el derecho de modificar estos términos y condiciones en cualquier momento. Cualquier cambio será efectivo inmediatamente después de su publicación en este sitio web.",
+
+    "section7_title": "▎7. Contacto",
+    "section7_text": "Si tienes preguntas sobre estos términos y condiciones, por favor contáctanos a través de nuestra cuenta en Telegram:",
+
+    "footer_rights": "CyberSecureAID © 2025 - Todos los derechos reservados"
+
   },
+
   "us": {
     "Servicios Profesionales de Investigación Digital y Seguridad Informática": "Professional Digital Investigation and Cybersecurity Services",
     "PLANES": "PLANS",
@@ -98,7 +138,45 @@
     "Contáctanos en Telegram": "Contact us on Telegram",
     "terms_label": "Terms and Conditions",
     "download_pdf": "📄 Download PDF",
-    "legal_clause": "⚖️ Legal Clause"
+    "legal_clause": "⚖️ Legal Clause",
 
+    "legal_title": "📜 Legal Section",
+    "legal_subtitle": "Learn our Terms and Conditions",
+
+    "section1_title": "▎1. Terms and Conditions",
+    "section1_1_title": "▎1.1 Acceptance of Terms",
+    "section1_1_text": "By accessing and using this website, you agree to comply with these terms and conditions. If you are not in agreement with any of these terms, we recommend that you do not use our services.",
+    
+    "section2_title": "▎2. Limitation of Liability",
+    "section2_1_title": "▎2.1 Customer Responsibility",
+    "section2_1_text": "The customer must have legal authority to request investigation. This means that the customer must be the owner of the rights or have the necessary authorization to perform the requested investigation. CyberSecureAID does not assume any liability for legal consequences that may arise from the use of our services in an unlawful manner. It is the responsibility of the customer to ensure that their request complies with all applicable laws and has the appropriate authorization to carry out the investigation.",
+    "section2_2_title": "▎2.2 Exclusion of Liability",
+    "section2_2_text": "CyberSecureAID will not be liable for any direct, indirect, incidental, or consequential damage that results from the use or inability to use our services, even if we have been notified of the possibility of such damages.",
+
+    "section3_title": "▎3. Legal Clause",
+    "section3_text": "“CyberSecureAID does not carry out illegal interventions, unauthorized hacking or actions that infringe on digital privacy laws. All services are performed on open sources, own devices or under written authorization of the interested party.”",
+
+    "section4_title": "▎4. Intellectual Property",
+    "section4_1_title": "▎4.1 Copyright",
+    "section4_1_text": "All content on this website, including text, graphics, logos, and software, is owned by CyberSecureAID or its licensors and is protected by copyright laws.",
+
+    "section4_2_title": "▎4.2 Use Permitted",
+    "section4_2_text": "Personal and non-commercial use of the website content is permitted, as long as all copyright notices are maintained.",
+
+    "section5_title": "▎5. Privacy Policy",
+    "section5_1_title": "▎5.1 Data Collection",
+    "section5_1_text": "We collect personal information only when necessary to provide our services. This information is handled in accordance with our Privacy Policy.",
+    
+    "section5_2_title": "▎5.2 Use of Information",
+    "section5_2_text": "The information collected is used exclusively for the purposes established in our Privacy Policy and is not shared with third parties without the consent of the user.",
+    
+    "section6_title": "▎6. Modifications to Terms",
+    "section6_text": "CyberSecureAID reserves the right to modify these terms and conditions at any time. Any changes will be effective immediately after their publication on this website.",
+
+    "section7_title": "▎7. Contact",
+    "section7_text": "If you have any questions about these terms and conditions, please contact us through our Telegram account:",
+
+    "footer_rights": "CyberSecureAID © 2025 - All Rights Reserved"
+     
   }
 }

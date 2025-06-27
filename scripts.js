@@ -37,7 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(response => response.json())
     .then(translations => {
       // Establecer idioma inicial
-      let currentLang = 'es';
+      let currentLang = localStorage.getItem("language") || "es";
+      updateLanguage(currentLang);
       
       // Función para cambiar idioma
       function updateLanguage(lang) {
@@ -74,6 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Actualizar la bandera y el idioma
         this.setAttribute("data-lang", newLang);
         this.setAttribute("src", newFlagPath);
+        localStorage.setItem("language", newLang);
         updateLanguage(newLang);
     });
   });
