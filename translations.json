@@ -43,7 +43,10 @@
     "testimonio_1": "Durante una operación de rastreo, el sujeto generalmente se mueve, y su ubicación puede cambiar en pocas horas tras el reporte inicial del análisis.",
     "testimonio_2": "Es importante tener en cuenta que el tiempo es esencial; una respuesta rápida puede marcar la diferencia en la efectividad del rastreo y análisis forense.",
     "Servicios Profesionales de Investigación Digital": "Servicios Profesionales de Investigación Digital",
-    "Contáctanos en Telegram": "Contáctanos en Telegram"
+    "Contáctanos en Telegram": "Contáctanos en Telegram",
+    "terms_label": "Términos y Condiciones",
+    "download_pdf": "Descargar PDF",
+    "legal_clause": "⚖️ Cláusula Legal"
   },
   "us": {
     "Servicios Profesionales de Investigación Digital y Seguridad Informática": "Professional Digital Investigation and Cybersecurity Services",
@@ -90,6 +93,10 @@
     "testimonio_1": "During a tracking operation, the subject generally moves, and their location may change within hours of the initial analysis report.",
     "testimonio_2": "It's important to note that time is essential; a quick response can make a difference in the effectiveness of tracking and forensic analysis.",
     "Servicios Profesionales de Investigación Digital": "Professional Digital Investigation Services",
-    "Contáctanos en Telegram": "Contact us on Telegram"
+    "Contáctanos en Telegram": "Contact us on Telegram",
+    "terms_label": "Terms and Conditions",
+    "download_pdf": "Download PDF",
+    "legal_clause": "⚖️ Legal Clause"
+
   }
 }
