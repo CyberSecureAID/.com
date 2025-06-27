@@ -199,11 +199,22 @@ h1 {
   background: white;
   color: #222;
   transform: rotateY(180deg);
+  overflow-y: auto;
+  padding-bottom: 1.5rem;
 }
 
 /* Efecto de giro */
 .plan-card.flipped .card-inner {
   transform: rotateY(180deg);
+}
+
+.plan-gif {
+  width: 100%;
+  max-width: 280px;
+  margin: 1rem auto;
+  display: block;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 /* Efecto hover: aro de colores y elevación */
