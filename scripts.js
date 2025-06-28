@@ -167,3 +167,39 @@ function flipCard(button) {
     card.classList.toggle("flipped");
   }
 }
+
+const starsCanvas = document.getElementById("stars");
+if (starsCanvas) {
+  starsCanvas.width = window.innerWidth;
+  starsCanvas.height = window.innerHeight;
+  const ctx = starsCanvas.getContext("2d");
+  const stars = [];
+
+  for (let i = 0; i < 100; i++) {
+    stars.push({
+      x: Math.random() * starsCanvas.width,
+      y: Math.random() * starsCanvas.height,
+      radius: Math.random() * 1.5,
+      speed: Math.random() * 0.5 + 0.2
+    });
+  }
+
+  function animateStars() {
+    ctx.clearRect(0, 0, starsCanvas.width, starsCanvas.height);
+    ctx.fillStyle = "white";
+    stars.forEach(star => {
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.fill();
+      star.y += star.speed;
+      if (star.y > starsCanvas.height) star.y = 0;
+    });
+    requestAnimationFrame(animateStars);
+  }
+  animateStars();
+
+  window.addEventListener("resize", () => {
+    starsCanvas.width = window.innerWidth;
+    starsCanvas.height = window.innerHeight;
+  });
+}
