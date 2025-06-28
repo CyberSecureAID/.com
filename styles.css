@@ -165,7 +165,7 @@ h1 {
   margin: 15px 0;
   width: 100%;
   height: auto;
-  min-height: 1280px; /* Ajusta según el contenido */
+  min-height: 1290px; /* Ajusta según el contenido */
   /* height: 1270px; Ajusta el largo de la tarjeta */
   perspective: 1000px; /* 🔹 Efecto 3D */
 }
