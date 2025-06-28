@@ -114,7 +114,7 @@ h1 {
   transition: all 0.3s ease;
   opacity: 0.9;
   object-fit: cover;
-  border: 2px solid transparent;
+  border: 2px solid transparent; /* Borde inicial transparente */
   background-image: linear-gradient(white, white), linear-gradient(45deg, #00ffff, #ff00ff);
   background-origin: border-box;
   background-clip: padding-box, border-box;
@@ -124,6 +124,7 @@ h1 {
   filter: brightness(1.2);
   opacity: 1;
 }
+
 
 /* Secciones */
 .services-section,
@@ -145,12 +146,11 @@ h1 {
 
 /* Planes */
 .plans-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 30px;
   margin: 40px 0;
   padding: 0 10px;
-  justify-content: center;
 }
 
 .plan-card {
@@ -162,20 +162,21 @@ h1 {
   overflow: hidden;
   transition: all 0.3s ease;
   backdrop-filter: blur(15px);
-  margin: 1rem auto;
- 
+  margin: 15px 0;
   width: 100%;
-  max-width: 400px;
   height: auto;
-  min-height: 500px; /* Ajustado para asegurar espacio suficiente */
-  perspective: 1000px;
+  min-height: 1290px; /* Ajusta según el contenido */
+  /* height: 1270px; Ajusta el largo de la tarjeta */
+  perspective: 1000px; /* 🔹 Efecto 3D */
+}
+
+.card-inner, .card-front, .card-back {
+  height: auto;
 }
 
 .card-inner {
-  display: flex;
-  flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: auto;
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.6s;
@@ -184,37 +185,31 @@ h1 {
 .card-front, .card-back {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: auto;
   backface-visibility: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Cambiado para distribuir el contenido */
+  justify-content: center;
   align-items: center;
   padding: 20px;
-  text-align: center;
+  text-align: flex-start;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .card-front {
   color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1.5rem;
-  height: 100%;
-  min-height: 100%;
-  box-sizing: border-box;
 }
 
 .card-back {
-  background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-  color: #e0e0ff;
+  background: white;
+  color: #222;
   transform: rotateY(180deg);
   overflow-y: auto;
   padding-bottom: 1.5rem;
 }
 
+/* Efecto de giro */
 .plan-card.flipped .card-inner {
   transform: rotateY(180deg);
 }
@@ -228,6 +223,7 @@ h1 {
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
+/* Efecto hover: aro de colores y elevación */
 .plan-card::before {
   content: '';
   position: absolute;
@@ -255,36 +251,22 @@ h1 {
 }
 
 .plan-card.premium {
-  border: 2px solid transparent;
-  background: linear-gradient(145deg, rgba(255,215,0,0.08), rgba(255,215,0,0.03)) padding-box,
-              linear-gradient(45deg, #ffd700, #ff00ff) border-box;
-  box-shadow: 0 0 20px rgba(255,215,0,0.5);
-  animation: pulse-premium 2s infinite ease-in-out;
-}
-
-@keyframes pulse-premium {
-  0%, 100% { box-shadow: 0 0 20px rgba(255,215,0,0.5); }
-  50% { box-shadow: 0 0 30px rgba(255,215,0,0.7); }
-}
-
-.plan-card.premium:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 25px rgba(255,215,0,0.7);
+  border: 2px solid rgba(255,215,0,0.5);
+  background: linear-gradient(145deg, rgba(255,215,0,0.08), rgba(255,215,0,0.03));
 }
 
 .premium-badge {
   position: absolute;
-  top: -10px;
-  right: 15px;
+  top: -5px;
+  right: 20px;
   background: linear-gradient(45deg, #ffd700, #ffb347);
   color: #000;
   padding: 8px 12px;
   border-radius: 10px;
-  font-size: 0.9rem;
+  font-size: 10px;
   font-weight: bold;
   text-transform: uppercase;
   box-shadow: 0 5px 15px rgba(255,215,0,0.3);
-  transform: translateY(-50%);
 }
 
 .plan-title {
@@ -294,13 +276,21 @@ h1 {
   text-align: center;
 }
 
+.plan-price {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+  background: linear-gradient(45deg, #ff00ff, #00ffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .plan-features {
   list-style: none;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   padding: 0 10px;
-  flex-grow: 1; /* Permite que la lista ocupe espacio disponible */
-  overflow-y: auto;
-  max-height: 40vh;
 }
 
 .plan-features li {
@@ -322,41 +312,19 @@ h1 {
 }
 
 .delivery-time {
-  font-weight: bold;
-  font-weight: 600;
-  color: var(--accent-color, #3ea0ff); /* Ajusta al color principal de tu tema */
   background: linear-gradient(45deg, rgba(255,0,255,0.2), rgba(0,255,255,0.2));
   padding: 15px;
   border-radius: 8px;
   text-align: center;
-  flex-shrink: 0;
-  margin-top: auto;
-  /* margin-top: auto; Empuja al final de la tarjeta */
+  margin-top: 20px;
   border: 1px solid rgba(0,255,255,0.3);
   font-size: 1rem;
 }
 
-.utility-btn {
-  background-color: rgba(255,215,0,0.8);
-  color: black;
-  font-size: 1rem;
-  padding: 10px 15px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: block;
-  margin: 15px auto;
-}
-
-.utility-btn:hover {
-  background-color: rgba(255,215,0,1);
-}
-
 /* "¿Por Qué Elegirnos?" */
 .features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 25px;
   margin-top: 40px;
   padding: 0 10px;
@@ -399,7 +367,7 @@ h1 {
 /* Estadísticas */
 .stats-section {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   margin: 60px 0;
   padding: 0 10px;
@@ -482,63 +450,6 @@ h1 {
   margin-top: 20px;
 }
 
-.faq-result-card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.2);
-  padding: 15px 20px;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  transition: all 0.3s ease;
-}
-
-.faq-result-card:hover {
-  background: rgba(255,255,255,0.1);
-  box-shadow: 0 0 10px rgba(255,215,0,0.5);
-}
-
-.faq-question {
-  font-weight: bold;
-  color: #ffd700;
-  font-size: 1.2rem;
-  cursor: pointer;
-  position: relative;
-  padding-left: 35px;
-}
-
-.faq-question::before {
-  content: "\25B6";
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  transition: transform 0.3s ease;
-  color: #ffd700;
-}
-
-.faq-question.open::before {
-  transform: translateY(-50%) rotate(90deg);
-}
-
-.faq-answer {
-  color: #d0d0d0;
-  font-size: 1rem;
-  line-height: 1.5;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease, margin-top 0.4s ease;
-}
-
-.faq-answer.open {
-  max-height: 500px;
-  margin-top: 10px;
-}
-
-.faq-answer.typing-effect {
-  display: block;
-  white-space: normal; /* Cambiado para soportar múltiples líneas */
-  overflow: hidden;
-}
-
 /* Pie de Página */
 footer {
   text-align: center;
@@ -556,6 +467,265 @@ footer {
   text-decoration: none;
 }
 
+/* Detalles y animaciones para FAQ */
+details {
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+details[open] {
+  animation: fadeIn 0.4s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes blinkCaret {
+  0% { border-color: transparent; }
+  50% { border-color: white; }
+  100% { border-color: transparent; }
+}
+
+#faqSearch::placeholder {
+  color: #888;
+  animation: blinkCaret 1s step-end infinite;
+}
+
+/* Media Queries */
+@media (max-width: 480px) {
+  body { 
+    padding: 5px; 
+    font-size: 14px;
+  }
+  .container { 
+    padding: 0 10px; 
+  }
+  h1 { 
+    font-size: 1.8rem; 
+    margin-bottom: 15px;
+  }
+  .subtitle { 
+    font-size: 1rem; 
+  }
+  .description {
+    font-size: 0.9rem;
+  }
+  .section-title {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+  }
+  .plan-card { 
+    padding: 25px 15px; 
+    margin: 10px 0;
+  }
+  .plan-title {
+    font-size: 1.5rem;
+  }
+  .plan-price {
+    font-size: 2rem;
+  }
+  .plan-features li {
+    font-size: 0.9rem;
+    padding: 10px 0;
+    padding-left: 25px;
+  }
+  .premium-badge {
+    right: 15px;
+    padding: 6px 10px;
+    font-size: 9px;
+  }
+  .stats-section {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .stat-number {
+    font-size: 2rem;
+  }
+  .feature-item {
+    padding: 20px 15px;
+  }
+  .feature-icon {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .stats-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .plans-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  .stats-section {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1025px) {
+  body { padding: 20px; }
+  .container { padding: 0 30px; }
+  h1 { font-size: 3.5rem; }
+  .subtitle { font-size: 1.5rem; }
+  .description { font-size: 1.2rem; }
+  .section-title { font-size: 2.5rem; }
+  .plans-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    padding: 0 20px;
+  }
+  .plan-card { padding: 40px 30px; }
+  .plan-title { font-size: 2.2rem; }
+  .plan-price { font-size: 3.2rem; }
+  .features-grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 40px; 
+  }
+  .stats-section { 
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 40px; 
+  }
+  /* Estilos para las tarjetas FAQ ya establecidos */
+.faq-result-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.faq-result-card:hover {
+  background: rgba(255,255,255,0.1);
+  box-shadow: 0 0 10px rgba(255,215,0,0.5);
+}
+
+/* Estilos para la pregunta en la tarjeta */
+.faq-question {
+  font-weight: bold;
+  color: #ffd700;             /* Tono dorado para la pregunta */
+  font-size: 1.2rem;
+  cursor: pointer;
+  position: relative;         /* Necesario para posicionar el pseudo-elemento */
+  padding-left: 35px;         /* Deja espacio a la izquierda para el triángulo y un margen */
+  /* Puedes quitar padding-right si no lo necesitas */
+}
+
+/* Pseudo-elemento para el triángulo a la izquierda */
+.faq-question::before {
+  content: "\25B6";           
+  position: absolute;
+  left: 10px;                 
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
+  color: #ffd700;
+}
+
+/* Cuando la pregunta tenga la clase open, el triángulo rota para apuntar hacia abajo */
+.faq-question.open::before {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+/* Estilos para la respuesta en la tarjeta */
+.faq-answer {
+  color: #d0d0d0;
+  font-size: 1rem;
+  line-height: 1.5;
+  max-height: 0;               /* Oculta la respuesta inicialmente */
+  overflow: hidden;
+  transition: max-height 0.4s ease, margin-top 0.4s ease;
+}
+
+/* Cuando se agrega la clase open, se expande la respuesta */
+.faq-answer.open {
+  max-height: 500px;           /* Valor suficientemente alto para el contenido */
+  margin-top: 10px;
+}
+/* Efecto de escritura (typewriter) 
+   ATENCIÓN: Esto convertirá la respuesta en una línea única */
+.faq-answer.typing-effect {
+  display: inline-block;
+  white-space: nowrap;        /* Se forzará a una sola línea */
+  overflow: hidden;           /* Oculta el contenido que aún no se muestra */
+  border-right: 0.15em solid #00ffff;  /* Efecto cursor */
+  animation: typing 2s steps(30, end) forwards, blinkCaret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blinkCaret {
+  0% { border-right-color: transparent; }
+  50% { border-right-color: #00ffff; }
+  100% { border-right-color: transparent; }
+}
+/* Estilos del botón "Ver utilidad" */
+.utility-btn {
+  background-color: rgba(255,215,0,0.8);
+  color: black;
+  font-size: 1rem;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 15px auto;
+}
+.utility-btn:hover {
+  background-color: rgba(255,215,0,1);
+}
+/* Estilos de la ventana flotante */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+}
+.modal-content {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 60%;
+  max-width: 500px;
+  color: white;
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 28px;
+  cursor: pointer;
+}
 /* Botón flotante premium */
 .floating-terms {
   position: fixed;
@@ -581,6 +751,7 @@ footer {
   text-decoration: none;
   padding: 12px 20px;
   border-radius: 50px;
+  text-decoration: none;
   font-weight: bold;
   box-shadow: 0 4px 10px rgba(0,0,0,0.25);
   border: none;
@@ -606,10 +777,11 @@ footer {
   font-size: 14px;
 }
 
+/* Submenú de enlaces */
 .terms-dropdown {
   display: none;
   margin-top: 8px;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0);
   border-radius: 8px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.2);
   padding: 5px 10px;
@@ -632,22 +804,23 @@ footer {
   color: gold;
 }
 
-/* Sección legal */
+/* Seccion legal */
 .legal-content {
   max-width: 800px;
   margin: 20px auto;
-  background: rgba(255,255,255,0.05);
+  background: #00000000;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 0px;
   box-shadow: 0 6px 12px rgba(0,0,0,0.1);
   line-height: 1.6;
 }
 
 .legal-content section {
-  margin-top: 10px;
-  padding-top: 5px;
+  margin-top: 10px; /* 🔹 Reduce separación entre secciones */
+  padding-top: 5px; /* 🔹 Ajusta espacio interno */
 }
 
+/* Encabezado estilizado */
 .legal-header {
   text-align: center;
   padding: 15px;
@@ -655,11 +828,10 @@ footer {
   margin-bottom: 0px;
 }
 
-.legal-footer {
-  text-align: center;
-  padding: 15px;
-  background: rgba(255,255,255,0.05);
-  color: white;
+.subtitle {
+  font-size: 18px;
+  font-style: italic;
+  margin-bottom: 5px; /* 🔹 Menos espacio debajo del subtítulo */
 }
 
 h2, h3 {
@@ -667,43 +839,25 @@ h2, h3 {
 }
 
 blockquote {
-  background: rgba(255,255,255,0.1);
+  background: #f2f2f228;
   border-left: 4px solid #ffffff;
   padding: 15px;
   font-style: italic;
   margin: 20px 0;
 }
 
-/* Modal */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.6);
-}
-
-.modal-content {
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
-  margin: 15% auto;
-  padding: 20px;
-  border-radius: 10px;
-  width: 60%;
-  max-width: 500px;
-  color: white;
+/* Pie de página */
+.legal-footer {
   text-align: center;
+  padding: 15px;
+  background: #222;
+  color: white;
 }
 
-.close {
-  position: absolute;
-  right: 20px;
-  top: 10px;
-  font-size: 28px;
-  cursor: pointer;
+/* Efecto de aparición suave */
+@keyframes floatIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 /* Efecto de aparición suave */
@@ -716,155 +870,75 @@ blockquote {
   animation: floatIn 0.6s ease-out forwards;
 }
 
-.card-footer {
-  margin-top: auto;
-}
-
-/* Media Queries */
-@media screen and (max-width: 768px) {
-  .plan-card {
-    width: 100%;
-    margin-bottom: 1.5rem;
-  }
-
-  .delivery-time {
-    font-size: 0.9rem;
-    padding-top: 0.5rem;
-  }
-
-  .plan-features {
-    max-height: 35vh;
-    overflow-y: auto;
-    padding-bottom: 0.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  body { 
-    padding: 5px; 
-    font-size: 14px;
-  }
-  .container { 
-    padding: 0 10px; 
-  }
-  h1 { 
-    font-size: 1.8rem; 
-    margin-bottom: 15px;
-  }
-  .subtitle { 
-    font-size: 1rem; 
-  }
-  .description {
-    font-size: 0.9rem;
-  }
-  .section-title {
-    font-size: 1.6rem;
-    margin-bottom: 30px;
-  }
-  .plan-card { 
-    padding: 20px 15px; 
-    margin: 10px 0;
-    min-height: 450px; /* Reducido para móviles */
-  }
-  .plan-gif {
-    max-width: 200px; /* Reducido para móviles */
-  }
-  .plan-title {
-    font-size: 1.5rem;
-  }
-  .plan-features li {
-    font-size: 0.9rem;
-    padding: 10px 0;
-    padding-left: 25px;
-  }
-  .delivery-time {
-    font-size: 0.9rem;
-    padding: 10px;
-  }
-  .premium-badge {
-    right: 10px;
-    padding: 6px 10px;
-    font-size: 0.8rem;
-  }
-  .stats-section {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-  .stat-number {
-    font-size: 2rem;
-  }
-  .feature-item {
-    padding: 20px 15px;
-  }
-  .feature-icon {
-    font-size: 2rem;
-  }
+/* Responsive para móviles */
+@media (max-width: 768px) {
   .floating-terms {
     bottom: 15px;
     right: 15px;
   }
+  .terms-btn span {
+    display: none;
+  }
   .terms-btn {
-    width: 56px;
+    padding: 14px;
+    border-radius: 50%;
+  }
+  /* Versión Mobile - Se activa en pantallas menores a 768px */
+@media (max-width: 768px) {
+  .floating-terms {
+    bottom: 20px;
+    right: 15px;
+    left: auto; /* Asegura posición fija en derecha */
+  }
+
+  .terms-btn {
+    width: 56px; /* Tamaño táctil óptimo */
     height: 56px;
     padding: 0;
     border-radius: 50%;
     justify-content: center;
     align-items: center;
   }
-  .terms-btn span {
-    display: none;
+
+  /* Efecto pulsante para mejor descubrimiento */
+  @keyframes pulse-mobile {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+
+  .floating-terms.visible {
+    animation: floatIn 0.6s ease-out, pulse-mobile 2s infinite 2s;
+  }
+  .terms-btn:active {
+  transform: scale(0.95) !important;
+  background: linear-gradient(135deg, #1e3a8a 0%, #172554 100%) !important;
+  transition: transform 0.1s ease;
+}
+.mobile-tooltip {
+  display: none;
+  position: absolute;
+  right: 70px;
+  background: #2c3e50;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .terms-btn:hover .mobile-tooltip,
+  .terms-btn:focus .mobile-tooltip {
+    display: block;
+    animation: fadeIn 0.3s ease-out;
   }
 }
 
-@media (min-width: 481px) and (max-width: 768px) {
-  .plans-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .features-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-  .stats-section {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .plan-card {
-    min-height: 500px;
-  }
-  .plan-gif {
-    max-width: 240px;
-  }
-  .delivery-time {
-    font-size: 0.95rem;
-  }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(10px); }
+  to { opacity: 1; transform: translateX(0); }
 }
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .plans-container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-  }
-  .features-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-  }
-  .stats-section {
-    grid-template-columns: repeat(4, 1fr);
-  }
 }
-
-@media (min-width: 1025px) {
-  body { padding: 20px; }
-  .container { padding: 0 30px; }
-  h1 { font-size: 3.5rem; }
-  .subtitle { font-size: 1.5rem; }
-  .description { font-size: 1.2rem; }
-  .section-title { font-size: 2.5rem; }
-  .plans-container {
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 40px;
-    padding: 0 20px;
-  }
-  .plan-card { padding: 40px 30px; }
-  .plan-title { font-size: 2.2rem; }
-  .plan-features li { font-size: 1rem; }
+}
 }
