@@ -346,7 +346,7 @@ h1 {
 }
 
 .delivery-btn:hover::after {
-  content: "¡Contrata Ahora!"; /* Texto del tooltip */
+  content: attr(data-tooltip); /* Texto del tooltip */
   position: absolute;
   top: -30px; /* Posición encima del botón */
   left: 50%;

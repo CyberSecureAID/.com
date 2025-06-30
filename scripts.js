@@ -65,6 +65,13 @@ document.addEventListener("DOMContentLoaded", function () {
         el.textContent = allTranslations[lang][key];
       }
     }
+  
+    // Asignar traducción de hire_now a data-tooltip de botones .delivery-btn
+    document.querySelectorAll('.delivery-btn').forEach(btn => {
+      if (allTranslations[lang] && allTranslations[lang].hire_now) {
+        btn.dataset.tooltip = allTranslations[lang].hire_now;
+      }
+    });
   };
 
   // 🌐 FUNCIÓN DE ALERTA MULTIIDIOMA PARA BOTÓN "Más información"
