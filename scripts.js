@@ -3,24 +3,49 @@ let currentLang = localStorage.getItem("language") || "es";
 
 document.addEventListener("DOMContentLoaded", function () {
   const termsBtn = document.querySelector(".floating-terms");
+  const termsButton = document.querySelector(".terms-btn");
+  const termsMenu = document.getElementById("termsMenu");
+  const floatingTerms = document.querySelector(".floating-terms");
 
-  // 🌐 BOTÓN FLOTANTE DE TÉRMINOS: visibilidad por scroll + touch optimizado
+  // 🌐 BOTÓN FLOTANTE DE TÉRMINOS: visibilidad por scroll + touch
   if (termsBtn) {
-    window.addEventListener("scroll", () => {
+    const handleScroll = () => {
       const visible = window.scrollY > 300;
       termsBtn.style.opacity = visible ? "1" : "0";
       termsBtn.style.visibility = visible ? "visible" : "hidden";
-    });
+      if (termsMenu) {
+        termsMenu.classList.remove("visible");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // inicializa visibilidad al cargar
 
     termsBtn.style.transition = "opacity 0.3s, visibility 0.3s";
-    termsBtn.style.opacity = window.scrollY > 300 ? "1" : "0";
-    termsBtn.style.visibility = window.scrollY > 300 ? "visible" : "hidden";
 
     if ("ontouchstart" in window) {
       termsBtn.style.cursor = "pointer";
       termsBtn.addEventListener("touchstart", () => termsBtn.classList.add("touching"));
       termsBtn.addEventListener("touchend", () => termsBtn.classList.remove("touching"));
     }
+  }
+
+  // 🌐 SUBMENÚ DE TÉRMINOS: clic + cierre automático
+  if (termsButton && termsMenu && floatingTerms) {
+    termsButton.addEventListener("click", function (e) {
+      e.stopPropagation();
+      termsMenu.classList.toggle("visible");
+    });
+
+    floatingTerms.addEventListener("mouseleave", () => {
+      termsMenu.classList.remove("visible");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!floatingTerms.contains(e.target)) {
+        termsMenu.classList.remove("visible");
+      }
+    });
   }
 
   // 🌐 CARGAR TRADUCCIONES
@@ -79,7 +104,21 @@ document.addEventListener("DOMContentLoaded", function () {
         btn.dataset.tooltip = allTranslations[lang].view_details;
       }
     });
-  };
+
+    document.querySelectorAll('.terms-text').forEach(el => {
+  if (allTranslations[lang] && allTranslations[lang]["terms_label"]) {
+    el.textContent = allTranslations[lang]["terms_label"];
+  }
+});
+  
+    // Asignar traducción de terms_label a data-tooltip de botones .mobile-tooltip
+    document.querySelectorAll('.mobile-tooltip').forEach(el => {
+  if (allTranslations[lang] && allTranslations[lang]["terms_label"]) {
+    el.textContent = allTranslations[lang]["terms_label"];
+  }
+ });
+
+};
 
   // 🌐 FUNCIÓN DE ALERTA MULTIIDIOMA PARA BOTÓN "Más información"
   window.showPlanAlert = function (key) {

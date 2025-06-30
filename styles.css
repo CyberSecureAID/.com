@@ -831,7 +831,7 @@ details[open] {
   font-size: 28px;
   cursor: pointer;
 }
-/* Botón flotante premium */
+/* Botón flotante Terminos y condiciones */
 .floating-terms {
   position: fixed;
   bottom: 30px;
@@ -893,6 +893,10 @@ details[open] {
   z-index: 999;
   min-width: auto;
   width: max-content;
+}
+
+.terms-dropdown.visible {
+  display: block;
 }
 
 .terms-dropdown a {
@@ -1037,6 +1041,12 @@ blockquote {
   .terms-btn:focus .mobile-tooltip {
     display: block;
     animation: fadeIn 0.3s ease-out;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-tooltip {
+    display: none !important; /* Forzar ocultar en escritorio */
   }
 }
 
