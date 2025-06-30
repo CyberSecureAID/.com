@@ -1009,6 +1009,49 @@ blockquote {
     align-items: center;
   }
 
+  @media screen and (max-width: 480px) {
+  .terms-text {
+    display: none; /* Oculta el texto largo */
+  }
+
+  .terms-btn {
+    padding: 12px;
+    border-radius: 50%;
+    min-width: 50px;
+    min-height: 50px;
+    justify-content: center;
+    position: relative;
+    background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
+  }
+
+  .terms-icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  /* Tooltip opcional al tocar */
+  .terms-btn::after {
+    content: "Términos";
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .terms-btn:hover::after {
+    opacity: 1;
+  }
+}
+
   /* Efecto pulsante para mejor descubrimiento */
   @keyframes pulse-mobile {
     0% { transform: scale(1); }
