@@ -311,14 +311,63 @@ h1 {
   font-size: 1.1rem;
 }
 
+/* Estilos para los botones de entrega */
+.delivery-btn {
+  border: none;
+  background: none;
+  cursor: pointer; /* Cursor en forma de "manito" */
+  padding: 0; /* Evita espaciado adicional */
+  margin: 0; /* Alinea con el diseño original */
+  font: inherit; /* Hereda fuente, tamaño, etc. de .delivery-time */
+  position: relative; /* Para posicionar el tooltip */
+  perspective: 1000px; /* Para efecto 3D en hover */
+}
+
+.delivery-btn strong {
+  color: white; /* Texto blanco */
+  font-weight: bold; /* Asegura negrita explícitamente */
+}
+
 .delivery-time {
   background: linear-gradient(45deg, rgba(255,0,255,0.2), rgba(0,255,255,0.2));
+  color: white;
+  font-weight: bold;
   padding: 15px;
   border-radius: 8px;
   text-align: center;
   margin-top: 20px;
   border: 1px solid rgba(0,255,255,0.3);
   font-size: 1rem;
+}
+
+.delivery-btn:hover {
+  transform: scale(1.05) translateZ(10px); /* Efecto de "moverse hacia adelante" */
+  opacity: 0.9; /* Sutil cambio de opacidad */
+}
+
+.delivery-btn:hover::after {
+  content: "¡Contrata Ahora!"; /* Texto del tooltip */
+  position: absolute;
+  top: -30px; /* Posición encima del botón */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #007bff; /* Fondo azul para el tooltip */
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 10;
+  visibility: visible; /* Visible en hover */
+}
+
+.delivery-btn::after {
+  visibility: hidden; /* Oculta el tooltip por defecto */
+}
+
+.delivery-btn:focus {
+  outline: 2px solid #ffffff; /* Contorno blanco para accesibilidad */
+  outline-offset: 2px;
 }
 
 /* "¿Por Qué Elegirnos?" */
