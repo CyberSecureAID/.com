@@ -72,6 +72,13 @@ document.addEventListener("DOMContentLoaded", function () {
         btn.dataset.tooltip = allTranslations[lang].hire_now;
       }
     });
+  
+    // Asignar traducción de view_details a data-tooltip de botones .more-info-btn
+    document.querySelectorAll('.more-info-btn').forEach(btn => {
+      if (allTranslations[lang] && allTranslations[lang].view_details) {
+        btn.dataset.tooltip = allTranslations[lang].view_details;
+      }
+    });
   };
 
   // 🌐 FUNCIÓN DE ALERTA MULTIIDIOMA PARA BOTÓN "Más información"
