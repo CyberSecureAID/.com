@@ -311,6 +311,23 @@ h1 {
   font-size: 1.1rem;
 }
 
+/* Estilos del botón "Ver utilidad" */
+.utility-btn {
+  background-color: rgba(255,215,0,0.8);
+  color: black;
+  font-size: 1rem;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 15px auto;
+}
+.utility-btn:hover {
+  background-color: rgba(255,215,0,1);
+}
+
 /* Estilos para los botones de entrega */
 .delivery-btn {
   border: none;
@@ -351,7 +368,7 @@ h1 {
   top: -30px; /* Posición encima del botón */
   left: 50%;
   transform: translateX(-50%);
-  background-color: #007bff; /* Fondo azul para el tooltip */
+  background-color: #0056b3; /* Fondo azul para el tooltip */
   color: white;
   padding: 5px 10px;
   border-radius: 4px;
@@ -368,6 +385,60 @@ h1 {
 .delivery-btn:focus {
   outline: 2px solid #ffffff; /* Contorno blanco para accesibilidad */
   outline-offset: 2px;
+}
+
+/* Estilos para los botones "Más información" */
+.more-info-btn {
+  border: none;
+  background-color: #02ffff; /* Fondo azul para diferenciar de .delivery-btn */
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  perspective: 1000px;
+  font-size: 14px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.more-info-btn:hover {
+   background-color: rgb(0, 255, 157);
+  transform: scale(1.05) translateZ(10px);
+  opacity: 0.9;
+}
+
+.more-info-btn:hover::after {
+  content: attr(data-tooltip); /* Usa traducción de data-tooltip */
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #0056b3; /* Azul más oscuro para tooltip */
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 10;
+  visibility: visible;
+}
+
+.more-info-btn::after {
+  visibility: hidden;
+}
+
+.more-info-btn:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* Asegurar responsividad */
+@media (max-width: 600px) {
+  .more-info-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
 }
 
 /* "¿Por Qué Elegirnos?" */
@@ -729,22 +800,7 @@ details[open] {
   50% { border-right-color: #00ffff; }
   100% { border-right-color: transparent; }
 }
-/* Estilos del botón "Ver utilidad" */
-.utility-btn {
-  background-color: rgba(255,215,0,0.8);
-  color: black;
-  font-size: 1rem;
-  padding: 10px 15px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: block;
-  margin: 15px auto;
-}
-.utility-btn:hover {
-  background-color: rgba(255,215,0,1);
-}
+
 /* Estilos de la ventana flotante */
 .modal {
   display: none;
