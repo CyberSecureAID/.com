@@ -5,6 +5,7 @@ Thumbs.db
 # Node.js (si en el futuro usas npm o dependencias)
 node_modules/
 package-lock.json
+package.json
 
 # Caché de navegadores y compilaciones temporales
 *.log
@@ -31,6 +32,8 @@ docs/*.pdf
 .env
 
 # Excluir la carpeta de pruebas locales
+ios/
+www/
 tests/
 index_prueba.html
 scripts_prueba.js
