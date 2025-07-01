@@ -118,6 +118,19 @@ document.addEventListener("DOMContentLoaded", function () {
   }
  });
 
+ // 🔁 Actualizar texto de los botones "Ver más / Ver menos" según idioma actual
+document.querySelectorAll(".toggle-features").forEach((btn) => {
+  const features = btn.previousElementSibling;
+  const isCollapsed = features?.classList.contains("collapsed");
+
+  const labelKey = isCollapsed ? "ver_mas" : "ver_menos";
+  const label = allTranslations[lang]?.[labelKey] || (isCollapsed ? "Ver más" : "Ver menos");
+
+  if (btn.childNodes[0].nodeType === 3) {
+    btn.childNodes[0].textContent = label;
+  }
+});
+
 };
 
   // 🌐 FUNCIÓN DE ALERTA MULTIIDIOMA PARA BOTÓN "Más información"
@@ -256,3 +269,24 @@ if (starsCanvas) {
     starsCanvas.height = window.innerHeight;
   });
 }
+
+document.querySelectorAll('.toggle-features').forEach((btn) => {
+  const arrow = btn.querySelector('.arrow');
+
+  btn.addEventListener('click', () => {
+    const features = btn.previousElementSibling;
+    const lang = currentLang || "es";
+    const wasCollapsed = features.classList.contains('collapsed');
+
+    features.classList.toggle('collapsed');
+    btn.classList.toggle('open');
+
+    const labelKey = wasCollapsed ? "ver_menos" : "ver_mas";
+    const label = allTranslations[lang]?.[labelKey] || (wasCollapsed ? "Ver menos" : "Ver más");
+
+    if (btn.childNodes[0].nodeType === 3) {
+      // Reemplaza solo el texto antes del ícono/flecha
+      btn.childNodes[0].textContent = label;
+    }
+  });
+});
