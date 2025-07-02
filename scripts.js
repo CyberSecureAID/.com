@@ -10,9 +10,16 @@ document.addEventListener("DOMContentLoaded", function () {
   // 🌐 BOTÓN FLOTANTE DE TÉRMINOS: visibilidad por scroll + touch
   if (termsBtn) {
     const handleScroll = () => {
-      const visible = window.scrollY > 300;
-      termsBtn.style.opacity = visible ? "1" : "0";
-      termsBtn.style.visibility = visible ? "visible" : "hidden";
+      const scrollY = window.scrollY;
+      const visible = scrollY > 300;
+
+      // 🔁 Detectar si llegamos al fondo de la página
+      const scrollBottom = window.innerHeight + scrollY >= document.body.offsetHeight - 10;
+
+      const shouldShow = visible && !scrollBottom;
+
+      termsBtn.style.opacity = shouldShow ? "1" : "0";
+      termsBtn.style.visibility = shouldShow ? "visible" : "hidden";
       if (termsMenu) {
         termsMenu.classList.remove("visible");
       }
