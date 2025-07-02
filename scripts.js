@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (termsBtn) {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const visible = scrollY > 300;
+      const visible = scrollY > 200;
 
       // 🔁 Detectar si llegamos al fondo de la página
       const scrollBottom = window.innerHeight + scrollY >= document.body.offsetHeight - 10;
