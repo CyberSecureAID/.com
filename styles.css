@@ -877,6 +877,8 @@ details[open] {
   border-radius: 10px;
   margin-bottom: 15px;
   transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid rgba(0,255,255,0.2);
 }
 
 .faq-result-card:hover {
@@ -906,6 +908,10 @@ details[open] {
   color: #ffd700;
 }
 
+.faq-question.open::after {
+  transform: rotate(90deg);
+}
+
 /* Cuando la pregunta tenga la clase open, el triángulo rota para apuntar hacia abajo */
 .faq-question.open::before {
   transform: translateY(-50%) rotate(90deg);
@@ -929,11 +935,13 @@ details[open] {
 /* Efecto de escritura (typewriter) 
    ATENCIÓN: Esto convertirá la respuesta en una línea única */
 .faq-answer.typing-effect {
-  display: inline-block;
-  white-space: nowrap;        /* Se forzará a una sola línea */
+  display: block;
+  white-space: normal;        /* Se forzará a una sola línea */
   overflow: hidden;           /* Oculta el contenido que aún no se muestra */
   border-right: 0.15em solid #00ffff;  /* Efecto cursor */
-  animation: typing 2s steps(30, end) forwards, blinkCaret 0.75s step-end infinite;
+  animation: typing 1.5s steps(40, end) forwards, blinkCaret 0.75s step-end infinite;
+  max-height: 8em;
+  line-height: 1.5;
 }
 
 @keyframes typing {
