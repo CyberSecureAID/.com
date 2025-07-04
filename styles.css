@@ -5,14 +5,19 @@
   box-sizing: border-box;
   max-width: 100%;
 }
+html {
+  /* entre 14px y 18px según el ancho (320px–1024px) */
+  font-size: calc(14px + (18 - 14) * (100vw - 320px) / (1024 - 320));
+}
 
 body {
+  font-size: 1rem; /* hereda del html */
+  line-height: 1.5;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: radial-gradient(ellipse at center, #0f0f23 0%, #050510 100%);
   background-attachment: fixed;
   animation: pulseBG 10s infinite alternate;
   color: #ffffff;
-  line-height: 1.6;
   padding: 10px;
   min-height: 100vh;
   overflow-x: hidden;
@@ -869,6 +874,7 @@ details[open] {
     grid-template-columns: repeat(4, 1fr); 
     gap: 40px; 
   }
+
   /* Estilos para las tarjetas FAQ ya establecidos */
 .faq-result-card {
   background: rgba(255,255,255,0.05);
@@ -955,6 +961,67 @@ details[open] {
   100% { border-right-color: transparent; }
 }
 
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;                         /* espacio ícono-texto */
+  margin-top: 12px;                 /* separación vertical */
+  padding: 8px 16px;                /* área clicable generosa */
+  background: linear-gradient(135deg, #ccff00 0%, #a3ff00 100%);
+  color: #000;
+  font-weight: bold;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  cursor: pointer;
+  position: relative;               /* para ripple */
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.copy-btn::before {
+  display: inline-block;
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+.copy-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+.copy-btn:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+/* Ripple effect */
+.copy-btn::after {
+  content: "";
+  position: absolute;
+  width: 100px; height: 100px;
+  top: 50%; left: 50%;
+  pointer-events: none;
+  background: rgba(255,255,255,0.4);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: transform 0.6s ease, opacity 0.8s ease;
+}
+
+.copy-btn:active::after {
+  transform: translate(-50%, -50%) scale(3);
+  opacity: 0.6;
+  transition: transform 0s, opacity 0s;
+}
+
+/* Estado “copiado” */
+.copy-btn.copied {
+  background: #a5d6a7;
+  color: #1b5e20;
+}
+  
 /* Estilos de la ventana flotante */
 .modal {
   display: none;
