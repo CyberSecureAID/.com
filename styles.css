@@ -4,7 +4,10 @@
   padding: 0;
   box-sizing: border-box;
   max-width: 100%;
+  transition: color 0.2s ease, background-color 0.2s ease,
+              opacity 0.2s ease, transform 0.2s ease;
 }
+
 html {
   /* entre 14px y 18px según el ancho (320px–1024px) */
   font-size: calc(14px + (18 - 14) * (100vw - 320px) / (1024 - 320));
@@ -130,7 +133,6 @@ h1 {
   opacity: 1;
 }
 
-
 /* Secciones */
 .services-section,
 .faq-section,
@@ -239,6 +241,413 @@ h1 {
 .terms-dropdown a:hover {
   background: #f2f2f23e;
   color: gold;
+}
+
+/* Sección FAQ */
+.faq-section input {
+  width: 100%;
+  padding: 12px 40px 12px 15px;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  background-color: rgba(255,255,255,0.05);
+  color: white;
+}
+
+#faqSearch {
+  width: 2500px;
+  max-width: 600px;         /* Ajusta según tu gusto visual */
+  padding: 12px 20px;
+  font-size: 1rem;
+  margin: 0 auto;
+}
+
+#faqSearch::placeholder {
+  color: #888;
+  animation: blinkCaret 1s step-end infinite;
+}
+
+.faq-section span {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #00ffff;
+  font-size: 18px;
+}
+
+.spinner {
+  text-align: center;
+  font-size: 1rem;
+  color: #00ffff;
+  margin: 15px 0;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%   { opacity: 0.3; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+.faq-section #faqResults {
+  margin-top: 20px;
+}
+
+/* Estilos para las tarjetas FAQ ya establecidos */
+.faq-result-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid rgba(0,255,255,0.2);
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.faq-result-card.result-item-animated {
+  animation: fadeInUp 0.4s forwards;
+}
+
+.faq-result-card:hover {
+  background: rgba(255,255,255,0.1);
+  box-shadow: 0 0 10px rgba(255,215,0,0.5);
+}
+
+/* Estilos para la pregunta en la tarjeta */
+.faq-question {
+  font-weight: bold;
+  color: #ffd700;             /* Tono dorado para la pregunta */
+  font-size: 1.1rem;           /* escala automáticamente */
+  cursor: pointer;
+  position: relative;         /* Necesario para posicionar el pseudo-elemento */
+  padding-left: 35px;         /* Deja espacio a la izquierda para el triángulo y un margen */
+  /* Puedes quitar padding-right si no lo necesitas */
+}
+
+/* Pseudo-elemento para el triángulo a la izquierda */
+.faq-question::before {
+  content: "\25B6";           
+  position: absolute;
+  left: 10px;                 
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
+  color: #ffd700;
+}
+
+.faq-question.open::after {
+  transform: rotate(90deg);
+}
+
+/* Cuando la pregunta tenga la clase open, el triángulo rota para apuntar hacia abajo */
+.faq-question.open::before {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+/* Estilos para la respuesta en la tarjeta */
+.faq-answer {
+  color: #d0d0d0;
+  font-size: 1rem;
+  line-height: 1.5;
+  max-height: 0;               /* Oculta la respuesta inicialmente */
+  overflow: hidden;
+  transition: max-height 0.4s ease, margin-top 0.4s ease;
+}
+
+/* Cuando se agrega la clase open, se expande la respuesta */
+.faq-answer.open {
+  max-height: 1000px;           /* Valor suficientemente alto para el contenido */
+  margin-top: 10px;
+}
+/* Efecto de escritura (typewriter) 
+   ATENCIÓN: Esto convertirá la respuesta en una línea única */
+.faq-answer.typing-effect {
+  display: block;
+  white-space: normal;        /* Se forzará a una sola línea */
+  overflow: hidden;           /* Oculta el contenido que aún no se muestra */
+  border-right: 0.15em solid #00ffff;  /* Efecto cursor */
+  animation: typing 1.5s steps(40, end) forwards, blinkCaret 0.75s step-end infinite;
+  max-height: 8em;
+  line-height: 1.5;
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;                         /* espacio ícono-texto */
+  margin-top: 12px;                 /* separación vertical */
+  padding: 8px 16px;                /* área clicable generosa */
+  background: linear-gradient(135deg, #ccff00 0%, #a3ff00 100%);
+  color: #000;
+  font-weight: bold;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  cursor: pointer;
+  position: relative;               /* para ripple */
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.copy-btn::before {
+  display: inline-block;
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+.copy-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+.copy-btn:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+/* Ripple effect */
+.copy-btn::after {
+  content: "";
+  position: absolute;
+  width: 100px; height: 100px;
+  top: 50%; left: 50%;
+  pointer-events: none;
+  background: rgba(255,255,255,0.4);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: transform 0.6s ease, opacity 0.8s ease;
+}
+
+.copy-btn:active::after {
+  transform: translate(-50%, -50%) scale(3);
+  opacity: 0.6;
+  transition: transform 0s, opacity 0s;
+}
+
+/* Estado “copiado” */
+.copy-btn.copied {
+  background: #a5d6a7;
+  color: #1b5e20;
+}
+
+/* ────────────────────────────────────────────
+   BUSCADOR INTELIGENTE
+──────────────────────────────────────────── */
+.search-module {
+  margin-bottom: 40px;
+}
+
+.search-box-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.search-subtitle {
+  font-size: 1.6rem;
+  text-align: center;
+  font-weight: bold;
+  background: linear-gradient(
+    -45deg,
+    #00ffff,
+    #ff00ff,
+    #ffd700,
+    #00ffff
+  );
+  background-size: 400% 400%;
+  animation: gradientMove 8s ease infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Animación del gradiente */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.search-type-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 100px;
+  justify-content: center;
+  margin-bottom: 16px;
+  font-size: 1rem;
+}
+
+.search-type-options label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 1rem;
+}
+
+.search-type-options input[type="radio"] {
+  accent-color: #00e5ff;
+  width: 16px;
+  height: 16px;
+}
+
+.search-input-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.search-input-wrapper input {
+  flex: 1;              
+  width: 400px;             
+  max-width: 600px;
+  padding: 8px 12px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background: #0f0f0f;
+  color: #eee;
+}
+
+.search-input-wrapper button {
+  padding: 8px 12px;
+  font-size: 1rem;
+  background-color: #00e5ff;
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.search-input-wrapper input::placeholder {
+  color: #777;
+}
+
+#searchBtn {
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  background: #00e5ff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  flex-shrink: 0; 
+}
+
+#searchBtn:hover {
+  background: #00c4d0;
+}
+
+#searchIcon {
+  font-size: 1.2rem;
+  line-height: 1;           /* evita desajustes verticales */
+  position: static;         /* por si algún otro estilo lo sacó de flujo */
+  float: none;              /* anula cualquier float previo */
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blinkCaret {
+  0% { border-right-color: transparent; }
+  50% { border-right-color: #00ffff; }
+  100% { border-right-color: transparent; }
+}
+
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ────────────────────────────────────────────
+   TABLA DIRECTORIO ETECSA
+──────────────────────────────────────────── */
+.telf-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 0.95rem;
+}
+.telf-table th,
+.telf-table td {
+  border: 1px solid #333;
+  padding: 8px 12px;
+}
+.telf-table th {
+  background: #222;
+  color: #00e5ff;
+  text-align: center;
+}
+.telf-table td.text-center,
+.telf-table th.text-center {
+  text-align: center;
+}
+
+/* ────────────────────────────────────────────
+   HIGHLIGHT EN HASH
+──────────────────────────────────────────── */
+.highlighted {
+  background: #00e5ff20;
+  transition: background 1.5s ease-out;
+}
+
+/* ────────────────────────────────────────────
+   MEDIA QUERIES (RESPONSIVE)
+──────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .search-input-wrapper {
+    flex-direction: column;
+  }
+  .search-input-wrapper input {
+    width: 100%;
+  }
+  .telf-table {
+    font-size: 0.85rem;
+  }
+}
+
+@media (min-width: 768px) {
+  #faqSearch {
+    max-width: 800px;
+  }
+}
+
+@media (max-width: 767px) {
+  #faqSearch {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .search-input-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #faqSearch {
+    width: 100%;
+  }
+
+  #searchBtn {
+    width: 100%;             /* botón a lo ancho del contenedor */
+    margin-top: 10px;
+    font-size: 1.1rem;
+    padding: 12px;
+  }
 }
 
 /* Planes */
@@ -680,31 +1089,6 @@ h1 {
   font-weight: bold;
 }
 
-/* Sección FAQ */
-.faq-section input {
-  width: 100%;
-  padding: 12px 40px 12px 15px;
-  border-radius: 10px;
-  border: none;
-  font-size: 1rem;
-  background-color: rgba(255,255,255,0.05);
-  color: white;
-}
-
-.faq-section span {
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  color: #00ffff;
-  font-size: 18px;
-}
-
-.faq-section #faqResults {
-  margin-top: 20px;
-}
-
 /* Pie de Página */
 footer {
   text-align: center;
@@ -741,11 +1125,6 @@ details[open] {
   0% { border-color: transparent; }
   50% { border-color: white; }
   100% { border-color: transparent; }
-}
-
-#faqSearch::placeholder {
-  color: #888;
-  animation: blinkCaret 1s step-end infinite;
 }
 
 /* Media Queries */
@@ -874,153 +1253,6 @@ details[open] {
     grid-template-columns: repeat(4, 1fr); 
     gap: 40px; 
   }
-
-  /* Estilos para las tarjetas FAQ ya establecidos */
-.faq-result-card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.2);
-  padding: 15px 20px;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  border: 1px solid rgba(0,255,255,0.2);
-}
-
-.faq-result-card:hover {
-  background: rgba(255,255,255,0.1);
-  box-shadow: 0 0 10px rgba(255,215,0,0.5);
-}
-
-/* Estilos para la pregunta en la tarjeta */
-.faq-question {
-  font-weight: bold;
-  color: #ffd700;             /* Tono dorado para la pregunta */
-  font-size: 1.2rem;
-  cursor: pointer;
-  position: relative;         /* Necesario para posicionar el pseudo-elemento */
-  padding-left: 35px;         /* Deja espacio a la izquierda para el triángulo y un margen */
-  /* Puedes quitar padding-right si no lo necesitas */
-}
-
-/* Pseudo-elemento para el triángulo a la izquierda */
-.faq-question::before {
-  content: "\25B6";           
-  position: absolute;
-  left: 10px;                 
-  top: 50%;
-  transform: translateY(-50%);
-  transition: transform 0.3s ease;
-  color: #ffd700;
-}
-
-.faq-question.open::after {
-  transform: rotate(90deg);
-}
-
-/* Cuando la pregunta tenga la clase open, el triángulo rota para apuntar hacia abajo */
-.faq-question.open::before {
-  transform: translateY(-50%) rotate(90deg);
-}
-
-/* Estilos para la respuesta en la tarjeta */
-.faq-answer {
-  color: #d0d0d0;
-  font-size: 1rem;
-  line-height: 1.5;
-  max-height: 0;               /* Oculta la respuesta inicialmente */
-  overflow: hidden;
-  transition: max-height 0.4s ease, margin-top 0.4s ease;
-}
-
-/* Cuando se agrega la clase open, se expande la respuesta */
-.faq-answer.open {
-  max-height: 500px;           /* Valor suficientemente alto para el contenido */
-  margin-top: 10px;
-}
-/* Efecto de escritura (typewriter) 
-   ATENCIÓN: Esto convertirá la respuesta en una línea única */
-.faq-answer.typing-effect {
-  display: block;
-  white-space: normal;        /* Se forzará a una sola línea */
-  overflow: hidden;           /* Oculta el contenido que aún no se muestra */
-  border-right: 0.15em solid #00ffff;  /* Efecto cursor */
-  animation: typing 1.5s steps(40, end) forwards, blinkCaret 0.75s step-end infinite;
-  max-height: 8em;
-  line-height: 1.5;
-}
-
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes blinkCaret {
-  0% { border-right-color: transparent; }
-  50% { border-right-color: #00ffff; }
-  100% { border-right-color: transparent; }
-}
-
-.copy-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;                         /* espacio ícono-texto */
-  margin-top: 12px;                 /* separación vertical */
-  padding: 8px 16px;                /* área clicable generosa */
-  background: linear-gradient(135deg, #ccff00 0%, #a3ff00 100%);
-  color: #000;
-  font-weight: bold;
-  font-size: 0.95rem;
-  border: none;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  cursor: pointer;
-  position: relative;               /* para ripple */
-  overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.copy-btn::before {
-  display: inline-block;
-  font-size: 1.1em;
-  line-height: 1;
-}
-
-.copy-btn:hover {
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-}
-
-.copy-btn:active {
-  transform: translateY(0) scale(0.97);
-  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-}
-
-/* Ripple effect */
-.copy-btn::after {
-  content: "";
-  position: absolute;
-  width: 100px; height: 100px;
-  top: 50%; left: 50%;
-  pointer-events: none;
-  background: rgba(255,255,255,0.4);
-  border-radius: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  opacity: 0;
-  transition: transform 0.6s ease, opacity 0.8s ease;
-}
-
-.copy-btn:active::after {
-  transform: translate(-50%, -50%) scale(3);
-  opacity: 0.6;
-  transition: transform 0s, opacity 0s;
-}
-
-/* Estado “copiado” */
-.copy-btn.copied {
-  background: #a5d6a7;
-  color: #1b5e20;
-}
   
 /* Estilos de la ventana flotante */
 .modal {

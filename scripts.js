@@ -1,7 +1,7 @@
 let allTranslations = {};
 let currentLang = localStorage.getItem("language") || "es";
 
-// Datos de la FAQ (puedes ampliar estos objetos según necesites)
+// 1) Datos de la FAQ
 const faqData = [
   {
     "id": "q-2964564747354922108",
@@ -240,15 +240,20 @@ const faqData = [
   }
 ];
 
-// 1) Búsqueda dinámica en FAQ
-function triggerSearch() {
-  const input = document.getElementById("faqSearch").value
-    .toLowerCase().trim();
-  const resultsContainer = document.getElementById("faqResults");
-  resultsContainer.innerHTML = "";
-  if (!input) return;
+// 2) Datos demo de Directorio Etecsa
+const etecData = [
+  { nombre: "Trd Caribe Almacén", numero: "2342342424", direccion: "54 E/ 45 Y 47, San José de las Lajas, Mayabeque" },
+  { nombre: "Trd Caribe El Balcón", numero: "234234234242", direccion: "Carr. Tapaste Km 23½, San José de las Lajas, Mayabeque" },
+  // … más registros …
+];
 
-  const terms = input.split(/\s+/);
+// 3) Buscar en Cyberpedia (FAQ)
+function searchCyberpedia(query) {
+  const results = document.getElementById("faqResults");
+  results.innerHTML = "";
+  if (!query) return;
+
+  const terms = query.split(/\s+/);
   const matches = faqData.filter(({ q, a }) =>
     terms.some(term =>
       q.toLowerCase().includes(term) ||
@@ -256,15 +261,15 @@ function triggerSearch() {
     )
   );
 
-  if (matches.length === 0) {
+  if (!matches.length) {
     const similar = faqData.find(({ q }) =>
       q.toLowerCase().split(/\s+/).some(word =>
         terms.some(term => word.includes(term))
       )
     );
-    resultsContainer.innerHTML = similar
+    results.innerHTML = similar
       ? `<p class="faq-no-results">
-           No se encontraron coincidencias exactas.<br>
+           No coincidencias exactas.<br>
            ¿Quizás quisiste decir: <strong>${similar.q}</strong>?
          </p>`
       : `<p class="faq-no-results">No se encontraron resultados.</p>`;
@@ -283,13 +288,89 @@ function triggerSearch() {
         <button class="copy-btn" data-answer="${a}" style="display: none;">
           📋 Copiar
         </button>
-      </div>
-    `;
-    resultsContainer.appendChild(card);
+      </div>`;
+    results.appendChild(card);
   });
 }
 
-// 2) Actualización de idioma
+// 4) Buscar en Directorio Telefónico
+function searchEtecsa(query) {
+  const results = document.getElementById("faqResults");
+  results.innerHTML = "";
+  if (!query) return;
+
+  const matches = etecData.filter(({ nombre, direccion }) =>
+    nombre.toLowerCase().includes(query) ||
+    direccion.toLowerCase().includes(query)
+  );
+
+  if (!matches.length) {
+    results.innerHTML = `<p class="faq-no-results">No se encontraron resultados en el directorio.</p>`;
+    return;
+  }
+
+  const table = document.createElement("table");
+  table.className = "telf-table";
+  table.innerHTML = `
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Número</th>
+        <th>Dirección</th>
+        <th class="text-center">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${matches.map(m => `
+        <tr>
+          <td>👤 ${m.nombre}</td>
+          <td>📞 ${m.numero || "—"}</td>
+          <td>📍 ${m.direccion}</td>
+          <td class="text-center">
+            <button class="copy-btn" data-answer="👤 ${m.nombre}\n📞 ${m.numero || 'Sin número'}\n📍 ${m.direccion}">📋 Copiar</button>
+          </td>
+        </tr>
+      `).join("")}
+    </tbody>`;
+  results.appendChild(table);
+}
+
+// 5) Función unificada de búsqueda
+function triggerSearch() {
+  const inputEl = document.getElementById("faqSearch");
+  const query = inputEl.value.trim().toLowerCase();
+  const resultsContainer = document.getElementById("faqResults");
+  const loader = document.getElementById("loadingSpinner");
+  const icon = document.getElementById("searchIcon");
+  const mode = document.querySelector('input[name="searchMode"]:checked').value;
+
+  if (!query) {
+    resultsContainer.innerHTML = "";
+    loader.style.display = "none";
+    // ⏹ Restaura ícono si campo se borra
+    icon.textContent = mode === "telf" ? "📞" : "🔍";
+    return;
+  }
+
+  loader.style.display = "block";
+  icon.textContent = "⌛"; // ⌛ icono de carga
+
+  setTimeout(() => {
+    loader.style.display = "none";
+    
+    // 👇 Ejecutar búsqueda real
+    if (mode === "cyberpedia") {
+      searchCyberpedia(query);
+    } else {
+      searchEtecsa(query);
+    }
+
+    // 🔁 Restaurar ícono según modo
+    icon.textContent = mode === "telf" ? "📞" : "🔍";
+  }, 400); // Ajusta la duración del "efecto de carga"
+}
+
+// 6) Actualizar idioma
 function updateLanguage(lang) {
   currentLang = lang;
   document.querySelectorAll("[data-key]").forEach(el => {
@@ -298,6 +379,8 @@ function updateLanguage(lang) {
       el.textContent = allTranslations[lang][key];
     }
   });
+
+  // textos especiales
   const special = {
     description: "Servicios Profesionales de Investigación Digital y Seguridad Informática",
     "telegram-link": "Contáctanos en Telegram"
@@ -308,60 +391,135 @@ function updateLanguage(lang) {
       el.textContent = allTranslations[lang][key];
     }
   });
-  document.querySelectorAll('.delivery-btn').forEach(btn => {
-    if (allTranslations[lang]?.hire_now) {
-      btn.dataset.tooltip = allTranslations[lang].hire_now;
-    }
-  });
-  document.querySelectorAll('.more-info-btn').forEach(btn => {
-    if (allTranslations[lang]?.view_details) {
-      btn.dataset.tooltip = allTranslations[lang].view_details;
-    }
-  });
-  document.querySelectorAll('.terms-text, .mobile-tooltip').forEach(el => {
-    if (allTranslations[lang]?.terms_label) {
-      el.textContent = allTranslations[lang].terms_label;
-    }
-  });
-  document.querySelectorAll(".toggle-features").forEach(btn => {
-    const features = btn.previousElementSibling;
-    const collapsed = features.classList.contains("collapsed");
-    const labelKey = collapsed ? "ver_mas" : "ver_menos";
-    const label = allTranslations[lang]?.[labelKey] ||
-                  (collapsed ? "Ver más" : "Ver menos");
-    if (btn.firstChild.nodeType === 3) {
-      btn.firstChild.textContent = label;
-    }
-  });
 }
 window.updateLanguage = updateLanguage;
 
-// 3) Alertas multiidioma para planes
+// 7) Utilidades
 function showPlanAlert(key) {
-  const lang = localStorage.getItem("language") || "es";
-  const msg = allTranslations[lang]?.[key];
+  const msg = allTranslations[currentLang]?.[key];
   if (msg) alert(msg);
 }
 window.showPlanAlert = showPlanAlert;
 
-// 4) Toggle menú legal
 function toggleLegalMenu() {
   const menu = document.getElementById("termsMenu");
   menu.style.display = menu.style.display === "block" ? "none" : "block";
 }
 
-// 5) Flip cards de planes
 function flipCard(button) {
   const card = button.closest(".plan-card");
   if (card) card.classList.toggle("flipped");
 }
 
+// 8) Inicialización
 document.addEventListener("DOMContentLoaded", () => {
-  // Floating terms button
+  // Carga de traducciones
+  fetch("translations.json")
+    .then(r => r.json())
+    .then(json => {
+      allTranslations = json;
+      updateLanguage(currentLang);
+      const flag = document.getElementById("languageFlag");
+      if (flag) {
+        flag.addEventListener("click", () => {
+          const next = flag.getAttribute("data-lang") === "es" ? "us" : "es";
+          flag.setAttribute("data-lang", next);
+          flag.setAttribute("src", `assets/flags/${next}.svg`);
+          localStorage.setItem("language", next);
+          updateLanguage(next);
+        });
+      }
+    });
+
+  // Selector de modo → cambia icono y placeholder
+  const radios = document.querySelectorAll('input[name="searchMode"]');
+  const icon = document.getElementById("searchIcon");
+  const inputEl = document.getElementById("faqSearch");
+
+  radios.forEach(r => {
+    r.addEventListener("change", () => {
+      icon.textContent = r.value === "telf" ? "📞" : "🔍";
+      inputEl.placeholder = r.value === "telf"
+        ? "Ej: Nombre, telf, dirección…"
+        : "Ej: OSINT, phishing, término…";
+    });
+  });
+
+  // Disparar búsqueda al hacer click o presionar Enter
+  const btn = document.getElementById("searchBtn");
+  if (btn) btn.addEventListener("click", triggerSearch);
+  if (inputEl) {
+    inputEl.addEventListener("keypress", e => {
+      if (e.key === "Enter") triggerSearch();
+    });
+  }
+
+  // Buscar mientras escribes solo si está en modo cyberpedia
+inputEl.addEventListener("input", () => {
+  const mode = document.querySelector('input[name="searchMode"]:checked').value;
+  if (mode === "cyberpedia" || mode === "telf") {
+    triggerSearch();
+  }
+});
+
+  // Delegación de clic en resultados (copiar + toggle con typing effect)
+  const faqResults = document.getElementById("faqResults");
+  if (faqResults) {
+    faqResults.addEventListener("click", e => {
+      // Copiar texto
+      if (e.target.classList.contains("copy-btn")) {
+        e.stopPropagation();
+        const raw = e.target.dataset.answer;
+        const tmp = document.createElement("div");
+        tmp.innerHTML = raw;
+        const text = tmp.textContent || tmp.innerText || "";
+        navigator.clipboard.writeText(text).then(() => {
+          e.target.textContent = "✔ Copiado";
+          setTimeout(() => e.target.textContent = "📋 Copiar", 1500);
+        });
+        return;
+      }
+
+      // Toggle pregunta + efecto de escritura
+      if (e.target.classList.contains("faq-question")) {
+        const clickedQ = e.target;
+        const clickedA = clickedQ.nextElementSibling;
+        // cerrar otras
+        faqResults.querySelectorAll(".faq-question.open").forEach(q => {
+          if (q !== clickedQ) {
+            q.classList.remove("open");
+            const a = q.nextElementSibling;
+            a.classList.remove("open", "typing-effect");
+            const btn = a.querySelector(".copy-btn");
+            if (btn) btn.style.display = "none";
+          }
+        });
+        // abrir/cerrar actual
+        clickedQ.classList.toggle("open");
+        clickedA.classList.toggle("open");
+
+        // typing effect: aplica o quita clase
+        if (clickedA.classList.contains("open")) {
+          clickedA.classList.add("typing-effect");
+        } else {
+          clickedA.classList.remove("typing-effect");
+        }
+
+        // mostrar u ocultar botón copiar
+        const btnCopy = clickedA.querySelector(".copy-btn");
+        if (btnCopy) {
+          btnCopy.style.display = clickedA.classList.contains("open")
+            ? "inline-block"
+            : "none";
+        }
+      }
+    });
+  }
+
+  // Botón flotante término
   const termsBtn = document.querySelector(".floating-terms");
   const termsBtnMain = document.querySelector(".terms-btn");
   const termsMenu = document.getElementById("termsMenu");
-  const floating = document.querySelector(".floating-terms");
 
   if (termsBtn) {
     const onScroll = () => {
@@ -374,51 +532,19 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     window.addEventListener("scroll", onScroll);
     onScroll();
-    termsBtn.style.transition = "opacity 0.3s, visibility 0.3s";
-    if ("ontouchstart" in window) {
-      termsBtn.style.cursor = "pointer";
-      termsBtn.addEventListener("touchstart", () => termsBtn.classList.add("touching"));
-      termsBtn.addEventListener("touchend", () => termsBtn.classList.remove("touching"));
-    }
   }
 
-  // Submenú legal
-  if (termsBtnMain && termsMenu && floating) {
+  if (termsBtnMain && termsMenu) {
     termsBtnMain.addEventListener("click", e => {
       e.stopPropagation();
       termsMenu.classList.toggle("visible");
     });
-    floating.addEventListener("mouseleave", () => termsMenu.classList.remove("visible"));
     document.addEventListener("click", e => {
-      if (!floating.contains(e.target)) {
-        termsMenu.classList.remove("visible");
-      }
+      if (!termsMenu.contains(e.target)) termsMenu.classList.remove("visible");
     });
   }
 
-  // Carga de traducciones
-  fetch("translations.json")
-    .then(r => r.json())
-    .then(json => {
-      allTranslations = json;
-      updateLanguage(currentLang);
-      const flag = document.getElementById("languageFlag");
-      if (flag) {
-        flag.addEventListener("click", function() {
-          const newLang = this.getAttribute("data-lang") === "es" ? "us" : "es";
-          this.setAttribute("data-lang", newLang);
-          this.setAttribute("src", `assets/flags/${newLang}.svg`);
-          localStorage.setItem("language", newLang);
-          updateLanguage(newLang);
-        });
-      }
-    });
-
-  // Búsqueda en FAQ
-  const faqInput = document.getElementById("faqSearch");
-  if (faqInput) faqInput.addEventListener("input", triggerSearch);
-
-  // Navegación por hash
+  // Scroll suave en hashchange
   window.addEventListener("hashchange", () => {
     const id = location.hash.slice(1);
     const el = document.getElementById(id);
@@ -428,56 +554,6 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => el.classList.remove("highlighted"), 1500);
     }
   });
-
-  // Delegación de clic en FAQResults
-  const faqResults = document.getElementById("faqResults");
-  if (faqResults) {
-    faqResults.addEventListener("click", e => {
-      // 1) Copiar al portapapeles
-      if (e.target.classList.contains("copy-btn")) {
-        e.stopPropagation();
-        const raw = e.target.dataset.answer;
-        const tmp = document.createElement("div");
-        tmp.innerHTML = raw;
-        const text = tmp.textContent || tmp.innerText || "";
-        navigator.clipboard.writeText(text).then(() => {
-          const btn = e.target;
-          btn.classList.add("copied");
-          btn.textContent = "✔ Copiado";
-          setTimeout(() => {
-            btn.classList.remove("copied");
-            btn.textContent = "📋 Copiar";
-          }, 1500);
-        });
-        return;
-      }
-      // 2) Al hacer clic en pregunta: cerrar otras y togglear la actual
-      if (e.target.classList.contains("faq-question")) {
-        const clickedQ = e.target;
-        const clickedA = clickedQ.nextElementSibling;
-        // Cerrar todas las demás
-        faqResults.querySelectorAll(".faq-question.open").forEach(q => {
-          if (q !== clickedQ) {
-            q.classList.remove("open");
-            const a = q.nextElementSibling;
-            a.classList.remove("open", "typing-effect");
-            const btn = a.querySelector(".copy-btn");
-            if (btn) btn.style.display = "none";
-          }
-        });
-        // Toggle sobre la clicada
-        clickedQ.classList.toggle("open");
-        clickedA.classList.toggle("open");
-        clickedA.classList.toggle("typing-effect");
-        const btn = clickedA.querySelector(".copy-btn");
-        if (btn) {
-          btn.style.display = clickedA.classList.contains("open")
-            ? "inline-block"
-            : "none";
-        }
-      }
-    });
-  }
 
   // Animación de estrellas
   const stars = document.getElementById("stars");
@@ -510,20 +586,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Toggle features
+  // Toggle de características (planes, secciones, etc.)
   document.querySelectorAll('.toggle-features').forEach(btn => {
     btn.addEventListener('click', () => {
       const features = btn.previousElementSibling;
-      const lang = currentLang;
-      const was = features.classList.contains('collapsed');
       features.classList.toggle('collapsed');
       btn.classList.toggle('open');
-      const key = was ? "ver_menos" : "ver_mas";
-      const label = allTranslations[lang]?.[key] ||
-                    (was ? "Ver menos" : "Ver más");
-      if (btn.firstChild.nodeType === 3) {
-        btn.firstChild.textContent = label;
-      }
     });
   });
 });

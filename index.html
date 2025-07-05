@@ -9,9 +9,9 @@
   <!-- Ícono del sitio web -->
   <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon" />
   <!-- Vincular archivo de estilos -->
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles_prueba.css" />
   <!-- Vincular archivo Javascript -->
-  <script src="scripts.js" defer></script>
+  <script src="scripts_prueba.js" defer></script>
 </head>
 <body>
   <!-- Estrellas y malla tecnológica -->
@@ -31,6 +31,44 @@
         <img id="languageFlag" src="assets/flags/es.svg" alt="Idioma" data-lang="es">
       </div>  
     </header>
+
+    <!-- Sección de Preguntas Frecuentes -->
+<section class="faq-section">
+  <h2 class="section-title">Cyberpedia.AI:</h2>
+
+  <section id="buscador-inteligente" class="search-module">
+    <!-- Contenedor centrado -->
+    <div class="search-box-centered">
+      <h3 class="search-subtitle">Buscar en Cyberpedia.AI</h3>
+
+      <!-- Selector de tipo de búsqueda -->
+      <div class="search-type-options">
+        <label>
+          <input type="radio" name="searchMode" value="cyberpedia" checked />
+          OSINT / seguridad digital
+        </label>
+        <label>
+          <input type="radio" name="searchMode" value="telf" />
+          Rastrear por Teléfono
+        </label>
+      </div>
+
+      <!-- Campo de búsqueda -->
+      <div class="search-input-wrapper">
+          <input id="faqSearch" placeholder="Buscar …" type="text" />
+        <button id="searchBtn">
+         <span id="searchIcon">🔍</span>
+        </button>
+      </div>
+
+      <div id="loadingSpinner" class="spinner" style="display: none;">
+       🔄 Buscando…
+      </div>
+
+       <!-- Resultados -->
+       <div id="faqResults"></div>
+  </section>
+</section>
     
     <!-- Sección de Planes -->
     <section class="services-section">
@@ -61,15 +99,15 @@
             <li data-key="plan1_feature8">Respaldo digital certificado con trazabilidad de evidencias</li>
             <li data-key="plan1_feature9">Opinión técnica documentada apta para procesos internos</li>
             <li data-key="plan1_feature10">Soporte técnico especializado para interpretación de resultados</li>
-          </ul>
-            <button class="toggle-features">
-              Ver más <span class="arrow">›››</span>
-            </button>
-        
-              <button class="more-info-btn utility-btn" onclick="showPlanAlert('plan1_alert')" data-key="more_info" data-tooltip="view_details" aria-label="Ver más información sobre Auditoría Forense Especializada">
+           </ul>
+           <button class="toggle-features">
+            Ver más <span class="arrow">›››</span>
+          </button>
+
+            <button class="more-info-btn utility-btn" onclick="showPlanAlert('plan1_alert')" data-key="more_info" data-tooltip="view_details" aria-label="Ver más información sobre Auditoría Forense Especializada">
                 Más información
-             </button>
-          
+            </button>
+  
             <button class="delivery-time delivery-btn" onclick="window.open('https://t.me/ExagTraderCEO', '_blank')" data-key="delivery_time_plan1" data-tooltip="hire_now" aria-label="Contactar para Auditoría Forense Especializada">
               <strong>Entrega: 48 horas</strong>
             </button>
@@ -116,15 +154,15 @@
             <button class="toggle-features">
               Ver más <span class="arrow">›››</span>
             </button>
-            
-            <button class="more-info-btn utility-btn" onclick="showPlanAlert('plan2_alert')" data-key="more_info" data-tooltip="view_details" aria-label="Ver más información sobre Plan de Análisis Táctico Inicial">
-                  Más información
-            </button>
 
+              <button class="more-info-btn utility-btn" onclick="showPlanAlert('plan2_alert')" data-key="more_info" data-tooltip="view_details" aria-label="Ver más información sobre Plan de Análisis Táctico Inicial">
+                  Más información
+              </button>
+      
           <button class="delivery-time delivery-btn" onclick="window.open('https://t.me/ExagTraderCEO', '_blank')" data-key="delivery_time_plan2" data-tooltip="hire_now" aria-label="Contactar para Plan de Análisis Táctico Inicial">
             <strong>Entrega: 48-72 horas</strong>
           </button>
-      </div>
+        </div>
            <!-- Parte trasera de la tarjeta Plan 2 -->
         <div class="card-back">
             <h3 data-key="Plan de Análisis Táctico Inicial">Plan de Análisis Táctico Inicial</h3>
@@ -171,9 +209,9 @@
             </button>
 
               <button class="more-info-btn utility-btn" onclick="showPlanAlert('plan3_alert')" data-key="more_info" data-tooltip="view_details" aria-label="Ver más información sobre Plan de Inteligencia Operativa Profunda">
-                    Más información
+                    Más información 
               </button>
-          
+
           <button class="delivery-time delivery-btn" onclick="window.open('https://t.me/ExagTraderCEO', '_blank')" data-key="delivery_time_plan3" data-tooltip="hire_now" aria-label="Contactar para Plan de Inteligencia Operativa Profunda">
             <strong>Entrega: 24 horas</strong>
           </button>
@@ -320,20 +358,6 @@
         <div class="testimonial-author"></div>
       </div>
     </section>
-    
-    <!-- Sección de Preguntas Frecuentes -->
-    <section class="faq-section">
-      <h2 class="section-title">Cyberpedia.AI:</h2>
-
-      <!-- Buscador -->
-      <div style="position: relative; margin-bottom: 30px;">
-        <input id="faqSearch" placeholder="Buscar por palabra clave..." type="text" />
-        <span onclick="triggerSearch()">🔍</span>
-      </div>
-
-      <!-- Resultados de la búsqueda / filtros -->
-      <div id="faqResults"></div>
-    </section>
 
     <!-- Pie de página -->
     <footer>
@@ -352,11 +376,11 @@
     </svg>
     <span class="terms-text" data-key="terms_label">Términos y Condiciones</span>
   </button>
-
-<div id="termsMenu" class="terms-dropdown">
+  <div id="termsMenu" class="terms-dropdown">
     <a href="docs/Terminos_CyberSecureAID.pdf" target="_blank" data-key="download_pdf">📄 Descargar PDF</a>
     <a href="legal.html" target="_blank" data-key="legal_clause">⚖️ Cláusula Legal</a>
+  </div>
 </div>
-</div>
+
 </body>
 </html>
