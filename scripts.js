@@ -369,39 +369,74 @@ function searchEtecsa(query) {
 }
 
 // 5) Función unificada de búsqueda
-function triggerSearch() {
+async function triggerSearch() {
   const inputEl = document.getElementById("faqSearch");
-  const query    = inputEl.value.trim().toLowerCase();
+  const query = inputEl.value.trim();
   const resultsContainer = document.getElementById("faqResults");
-  const loader   = document.getElementById("loadingSpinner");
-  const icon     = document.getElementById("searchIcon");
-  const mode     = document.querySelector('input[name="searchMode"]:checked').value || "cyberpedia";
+  const loader = document.getElementById("loadingSpinner");
+  const mode = document.querySelector('input[name="searchMode"]:checked')?.value || "cyberpedia";
 
   if (!query) {
     resultsContainer.innerHTML = "";
     loader.style.display = "none";
-    // ⏹ Restaura ícono si campo se borra
     updateSearchUI(mode);
     return;
   }
 
   loader.style.display = "block";
-  document.getElementById("searchIcon").textContent = "⌛"; 
+  document.getElementById("searchIcon").textContent = "⌛";
 
-  setTimeout(() => {
-    loader.style.display = "none";
-    
-    // 👇 Ejecutar búsqueda real
-    if (mode === "cyberpedia") {
-      searchCyberpedia(query);
-    } else {
-      searchEtecsa(query);
+  try {
+    let html = "";
+
+    if (mode === "wiki") {
+      const data = await lookupWikipedia(query);
+      html = `
+  <div class="faq-result-card result-item-animated">
+    ${data.thumbnail?.source ? `<img src="${data.thumbnail.source}" alt="${data.title}" class="wiki-thumb">` : ""}
+    <div class="faq-question">${data.title}</div>
+    <div class="faq-answer">${data.extract || "Sin extracto disponible."}</div>
+  </div>`;
+
     }
 
-    // 🔁 Restaurar ícono según modo
-    updateSearchUI(mode);
-  }, 400); // Ajusta la duración del "efecto de carga"
+    else if (mode === "telf") {
+      const result = await lookupETECSA(query);
+      const entries = result.items || [];
+
+      html = entries.length
+        ? `<table class="telf-table">
+             <thead>
+               <tr><th>Nombre</th><th>Número</th><th>Dirección</th></tr>
+             </thead>
+             <tbody>
+               ${entries.map(m => `
+                 <tr>
+                   <td>${m.nombre}</td>
+                   <td>${m.numero || "—"}</td>
+                   <td>${m.direccion}</td>
+                 </tr>`).join("")}
+             </tbody>
+           </table>`
+        : `<p class="faq-no-results">No se encontraron coincidencias en ETECSA.</p>`;
+    }
+
+    else {
+      searchCyberpedia(query);
+      loader.style.display = "none";
+      updateSearchUI(mode);
+      return;
+    }
+
+    resultsContainer.innerHTML = html;
+  } catch (err) {
+    resultsContainer.innerHTML = `<p class="faq-no-results">⚠️ Error: ${err.message}</p>`;
+  }
+
+  loader.style.display = "none";
+  updateSearchUI(mode);
 }
+
 
 // 6) Actualizar idioma
 function updateLanguage(lang) {
