@@ -375,7 +375,7 @@ function triggerSearch() {
     resultsContainer.innerHTML = "";
     loader.style.display = "none";
     // ⏹ Restaura ícono si campo se borra
-    icon.textContent = mode === "telf" ? "📞" : "🔍";
+    updateSearchUI(mode);
     return;
   }
 
@@ -393,7 +393,7 @@ function triggerSearch() {
     }
 
     // 🔁 Restaurar ícono según modo
-    icon.textContent = mode === "telf" ? "📞" : "🔍";
+    updateSearchUI(mode);
   }, 400); // Ajusta la duración del "efecto de carga"
 }
 
