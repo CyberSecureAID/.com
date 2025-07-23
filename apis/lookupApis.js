@@ -22,7 +22,7 @@ export async function lookupETECSA(term, offset = 0, limit = 10) {
   const res = await fetch(url);
 
   if (!res.ok || !res.headers.get("content-type")?.includes("json")) {
-    throw new Error("🛑 Respuesta no válida desde el proxy ETECSA");
+    throw new Error("🛑 Respuesta no válida desde el BaseDatos");
   }
 
   return await res.json();
