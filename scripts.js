@@ -6,17 +6,20 @@ const searchModes = {
   cyberpedia: {
     icon: "🕵️‍♂️",
     placeholder: "Ej: phishing, OSINT, término…",
-    spinner: "🕵️‍♂️ Buscando…"
+    spinner: "🕵️‍♂️ Buscando…",
+    title: "Buscar en OSINT"
   },
   wiki: {
     icon: "🧠",
     placeholder: "Ej: autor, incidente digital, perfil…",
-    spinner: "🧠 Consultando IA…"
+    spinner: "🧠 Consultando IA…",
+    title: "Buscar en Cyberpedia IA"
   },
   telf: {
     icon: "📞",
     placeholder: "Ej: nombre, número, dirección…",
-    spinner: "📞 Buscando en directorio…"
+    spinner: "📞 Rastreando…",
+    title: "Buscar Teléfonos"
   }
 };
 
@@ -26,6 +29,7 @@ function updateSearchUI(mode) {
   document.getElementById("searchIcon").textContent = config.icon;
   document.getElementById("faqSearch").placeholder = config.placeholder;
   document.getElementById("loadingSpinner").textContent = config.spinner;
+  document.getElementById("searchTitle").textContent = config.title;
 }
 
 // 1) Datos de la FAQ
