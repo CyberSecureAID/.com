@@ -1,3 +1,5 @@
+import { lookupWikipedia, lookupETECSA } from "./apis/lookupApis.js";
+
 let allTranslations = {};
 let currentLang = localStorage.getItem("language") || "es";
 
@@ -384,7 +386,7 @@ function triggerSearch() {
   }
 
   loader.style.display = "block";
-  icon.textContent = "⌛"; // ⌛ icono de carga
+  document.getElementById("searchIcon").textContent = "⌛"; 
 
   setTimeout(() => {
     loader.style.display = "none";
@@ -436,11 +438,13 @@ function toggleLegalMenu() {
   const menu = document.getElementById("termsMenu");
   menu.style.display = menu.style.display === "block" ? "none" : "block";
 }
+window.toggleLegalMenu = toggleLegalMenu;
 
 function flipCard(button) {
   const card = button.closest(".plan-card");
   if (card) card.classList.toggle("flipped");
 }
+window.flipCard = flipCard;
 
 // 8) Inicialización
 document.addEventListener("DOMContentLoaded", () => {
