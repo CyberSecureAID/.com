@@ -4,9 +4,9 @@ let currentLang = localStorage.getItem("language") || "es";
 // 📦 CONFIG: Modos de búsqueda visuales
 const searchModes = {
   cyberpedia: {
-    icon: "🔍",
+    icon: "🕵️‍♂️",
     placeholder: "Ej: phishing, OSINT, término…",
-    spinner: "🔍 Buscando…"
+    spinner: "🕵️‍♂️ Buscando…"
   },
   wiki: {
     icon: "🧠",
