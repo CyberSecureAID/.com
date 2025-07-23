@@ -32,9 +32,8 @@ docs/*.pdf
 .env
 
 # Excluir la carpeta de pruebas locales
-ios/
-www/
-tests/
+apis/
+proxy-test.html
 index_prueba.html
 scripts_prueba.js
 styles_prueba.css

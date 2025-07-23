@@ -1,6 +1,33 @@
 let allTranslations = {};
 let currentLang = localStorage.getItem("language") || "es";
 
+// 📦 CONFIG: Modos de búsqueda visuales
+const searchModes = {
+  cyberpedia: {
+    icon: "🔍",
+    placeholder: "Ej: phishing, OSINT, término…",
+    spinner: "🔍 Buscando…"
+  },
+  wiki: {
+    icon: "🧠",
+    placeholder: "Ej: autor, incidente digital, perfil…",
+    spinner: "🧠 Consultando IA…"
+  },
+  telf: {
+    icon: "📞",
+    placeholder: "Ej: nombre, número, dirección…",
+    spinner: "📞 Buscando en directorio…"
+  }
+};
+
+// 🧠 FUNCIÓN: Actualiza ícono, placeholder y texto de carga
+function updateSearchUI(mode) {
+  const config = searchModes[mode] || searchModes["cyberpedia"];
+  document.getElementById("searchIcon").textContent = config.icon;
+  document.getElementById("faqSearch").placeholder = config.placeholder;
+  document.getElementById("loadingSpinner").textContent = config.spinner;
+}
+
 // 1) Datos de la FAQ
 const faqData = [
   {
@@ -342,7 +369,7 @@ function triggerSearch() {
   const resultsContainer = document.getElementById("faqResults");
   const loader = document.getElementById("loadingSpinner");
   const icon = document.getElementById("searchIcon");
-  const mode = document.querySelector('input[name="searchMode"]:checked').value;
+  const mode = document.querySelector('input[name="searchMode"]:checked').value || "cyberpedia";
 
   if (!query) {
     resultsContainer.innerHTML = "";
