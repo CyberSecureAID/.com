@@ -365,11 +365,11 @@ function searchEtecsa(query) {
 // 5) Función unificada de búsqueda
 function triggerSearch() {
   const inputEl = document.getElementById("faqSearch");
-  const query = inputEl.value.trim().toLowerCase();
+  const query    = inputEl.value.trim().toLowerCase();
   const resultsContainer = document.getElementById("faqResults");
-  const loader = document.getElementById("loadingSpinner");
-  const icon = document.getElementById("searchIcon");
-  const mode = document.querySelector('input[name="searchMode"]:checked').value || "cyberpedia";
+  const loader   = document.getElementById("loadingSpinner");
+  const icon     = document.getElementById("searchIcon");
+  const mode     = document.querySelector('input[name="searchMode"]:checked').value || "cyberpedia";
 
   if (!query) {
     resultsContainer.innerHTML = "";
