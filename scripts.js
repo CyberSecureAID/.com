@@ -465,12 +465,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   radios.forEach(r => {
     r.addEventListener("change", () => {
-      icon.textContent = r.value === "telf" ? "📞" : "🔍";
-      inputEl.placeholder = r.value === "telf"
-        ? "Ej: Nombre, telf, dirección…"
-        : "Ej: OSINT, phishing, término…";
-    });
+      const mode = r.value;
+    updateSearchUI(mode);
   });
+});
 
   // Disparar búsqueda al hacer click o presionar Enter
   const btn = document.getElementById("searchBtn");
