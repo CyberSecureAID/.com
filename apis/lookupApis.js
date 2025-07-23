@@ -1,4 +1,5 @@
 // 🔍 Lookup APIs
+// 🌍 Wikipedia
 export async function lookupWikipedia(term) {
   const url = `https://es.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(term)}`;
   const res = await fetch(url);
