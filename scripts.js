@@ -1,9 +1,9 @@
-import { lookupWikipedia, lookupETECSA } from "./apis/lookupApis.js";
+import { lookupWikipedia, lookupUniversal } from "./apis/lookupApis.js";
 
 let allTranslations = {};
 let currentLang = localStorage.getItem("language") || "es";
 
-// 📦 CONFIG: Modos de búsqueda visuales
+// 1) 📦 CONFIG: Modos de búsqueda visuales
 const searchModes = {
   cyberpedia: {
     icon: "🕵️‍♂️",
@@ -273,14 +273,7 @@ const faqData = [
   }
 ];
 
-// 2) Datos demo de Directorio Etecsa
-const etecData = [
-  { nombre: "Trd Caribe Almacén", numero: "2342342424", direccion: "54 E/ 45 Y 47, San José de las Lajas, Mayabeque" },
-  { nombre: "Trd Caribe El Balcón", numero: "234234234242", direccion: "Carr. Tapaste Km 23½, San José de las Lajas, Mayabeque" },
-  // … más registros …
-];
-
-// 3) Buscar en Cyberpedia (FAQ)
+// 2) Buscar en Cyberpedia (FAQ)
 function searchCyberpedia(query) {
   const results = document.getElementById("faqResults");
   results.innerHTML = "";
@@ -326,49 +319,7 @@ function searchCyberpedia(query) {
   });
 }
 
-// 4) Buscar en Directorio Telefónico
-function searchEtecsa(query) {
-  const results = document.getElementById("faqResults");
-  results.innerHTML = "";
-  if (!query) return;
-
-  const matches = etecData.filter(({ nombre, direccion }) =>
-    nombre.toLowerCase().includes(query) ||
-    direccion.toLowerCase().includes(query)
-  );
-
-  if (!matches.length) {
-    results.innerHTML = `<p class="faq-no-results">No se encontraron resultados en el directorio.</p>`;
-    return;
-  }
-
-  const table = document.createElement("table");
-  table.className = "telf-table";
-  table.innerHTML = `
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Número</th>
-        <th>Dirección</th>
-        <th class="text-center">Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      ${matches.map(m => `
-        <tr>
-          <td>👤 ${m.nombre}</td>
-          <td>📞 ${m.numero || "—"}</td>
-          <td>📍 ${m.direccion}</td>
-          <td class="text-center">
-            <button class="copy-btn" data-answer="👤 ${m.nombre}\n📞 ${m.numero || 'Sin número'}\n📍 ${m.direccion}">📋 Copiar</button>
-          </td>
-        </tr>
-      `).join("")}
-    </tbody>`;
-  results.appendChild(table);
-}
-
-// 5) Función unificada de búsqueda
+// 3) Función unificada de búsqueda
 async function triggerSearch() {
   const inputEl = document.getElementById("faqSearch");
   const query = inputEl.value.trim();
@@ -401,24 +352,24 @@ async function triggerSearch() {
     }
 
     else if (mode === "telf") {
-      const result = await lookupETECSA(query);
-      const entries = result.items || [];
+      const { fuente, resultados } = await lookupUniversal(query, "movil");
 
       html = entries.length
-        ? `<table class="telf-table">
+        ? `<p>🟢 Fuente: ${fuente} | Resultados: ${resultados.length}</p>
+           <table class="telf-table">
              <thead>
                <tr><th>Nombre</th><th>Número</th><th>Dirección</th></tr>
              </thead>
              <tbody>
-               ${entries.map(m => `
+               ${resultados.map(m => `
                  <tr>
-                   <td>${m.nombre}</td>
-                   <td>${m.numero || "—"}</td>
-                   <td>${m.direccion}</td>
+                   <td>👤 ${m.name || m.nombre}</td>
+                   <td>📞 ${m.number || m.numero || "—"}</td>
+                   <td>📍 ${m.address || m.direccion || "—"}</td>
                  </tr>`).join("")}
              </tbody>
            </table>`
-        : `<p class="faq-no-results">No se encontraron coincidencias en ETECSA.</p>`;
+        : `<p class="faq-no-results">No se encontraron coincidencias en ETECSA ni SQLite Cloud.</p>`;
     }
 
     else {
@@ -437,8 +388,7 @@ async function triggerSearch() {
   updateSearchUI(mode);
 }
 
-
-// 6) Actualizar idioma
+// 4) Actualizar idioma
 function updateLanguage(lang) {
   currentLang = lang;
   document.querySelectorAll("[data-key]").forEach(el => {
@@ -462,7 +412,7 @@ function updateLanguage(lang) {
 }
 window.updateLanguage = updateLanguage;
 
-// 7) Utilidades
+// 5) Utilidades
 function showPlanAlert(key) {
   const msg = allTranslations[currentLang]?.[key];
   if (msg) alert(msg);
@@ -481,8 +431,9 @@ function flipCard(button) {
 }
 window.flipCard = flipCard;
 
-// 8) Inicialización
+// 6) Inicialización
 document.addEventListener("DOMContentLoaded", () => {
+  
   // Carga de traducciones
   fetch("translations.json")
     .then(r => r.json())

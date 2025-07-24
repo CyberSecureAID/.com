@@ -32,6 +32,8 @@ docs/*.pdf
 .env
 
 # Excluir la carpeta de pruebas locales
+contac/
+data/
 lookupApis origin.js
 lookupApis full.js
 proxy-test.html
