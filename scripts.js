@@ -1,4 +1,4 @@
-import { lookupWikipedia, lookupUniversal } from "./apis/lookupApis.js";
+import { lookupWikipedia, lookupInstitutionalByMode } from "./apis/lookupApis.js";
 
 let allTranslations = {};
 let currentLang = localStorage.getItem("language") || "es";
@@ -327,6 +327,8 @@ async function triggerSearch() {
   const loader = document.getElementById("loadingSpinner");
   const mode = document.querySelector('input[name="searchMode"]:checked')?.value || "cyberpedia";
 
+  updateSearchUI(mode);
+
   if (!query) {
     resultsContainer.innerHTML = "";
     loader.style.display = "none";
@@ -352,9 +354,9 @@ async function triggerSearch() {
     }
 
     else if (mode === "telf") {
-      const { fuente, resultados } = await lookupUniversal(query, "movil");
+      const { fuente, resultados } = await lookupInstitutionalByMode(query, "movil");
 
-      html = entries.length
+      html = resultados.length
         ? `<p>🟢 Fuente: ${fuente} | Resultados: ${resultados.length}</p>
            <table class="telf-table">
              <thead>
@@ -381,7 +383,7 @@ async function triggerSearch() {
 
     resultsContainer.innerHTML = html;
   } catch (err) {
-    resultsContainer.innerHTML = `<p class="faq-no-results">⚠️ Error: ${err.message}</p>`;
+    resultsContainer.innerHTML = `<p class="faq-no-results">${err.message}</p>`;
   }
 
   loader.style.display = "none";
@@ -413,23 +415,33 @@ function updateLanguage(lang) {
 window.updateLanguage = updateLanguage;
 
 // 5) Utilidades
-function showPlanAlert(key) {
+window.showPlanAlert = function(key) {
   const msg = allTranslations[currentLang]?.[key];
   if (msg) alert(msg);
-}
-window.showPlanAlert = showPlanAlert;
+};
 
-function toggleLegalMenu() {
+window.toggleLegalMenu = function() {
   const menu = document.getElementById("termsMenu");
   menu.style.display = menu.style.display === "block" ? "none" : "block";
-}
-window.toggleLegalMenu = toggleLegalMenu;
+};
 
-function flipCard(button) {
+window.flipCard = function(button) {
   const card = button.closest(".plan-card");
   if (card) card.classList.toggle("flipped");
-}
-window.flipCard = flipCard;
+};
+
+// 📡 Diagnóstico institucional
+window.testConexion = async function(term = "veracruz", mode = "fix") {
+  console.log("📡 Test iniciado:", term, "| Tabla:", mode);
+  
+  const { fuente, resultados, timestamp } = await lookupInstitutionalByMode(term, mode);
+  
+  // 🧮 Log institucional trazable
+  logRespuesta({ fuente, resultados, timestamp });
+  
+  // ✅ Log estándar de verificación
+  console.log(`✅ Fuente: ${fuente} | Resultados:`, resultados);
+};
 
 // 6) Inicialización
 document.addEventListener("DOMContentLoaded", () => {
@@ -452,90 +464,77 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-  // Selector de modo → cambia icono y placeholder
-  const radios = document.querySelectorAll('input[name="searchMode"]');
-  const icon = document.getElementById("searchIcon");
-  const inputEl = document.getElementById("faqSearch");
-
-  radios.forEach(r => {
-    r.addEventListener("change", () => {
-      const mode = r.value;
-    updateSearchUI(mode);
+    // Radios + iconos
+  document.querySelectorAll('input[name="searchMode"]').forEach(r => {
+    r.addEventListener("change", () => updateSearchUI(r.value));
   });
-});
-
-  // Disparar búsqueda al hacer click o presionar Enter
-  const btn = document.getElementById("searchBtn");
-  if (btn) btn.addEventListener("click", triggerSearch);
-  if (inputEl) {
-    inputEl.addEventListener("keypress", e => {
-      if (e.key === "Enter") triggerSearch();
-    });
+  
+  // Selector de modo → cambia icono y placeholder
+  const inputEl = document.getElementById("faqSearch");
+  document.getElementById("searchBtn").addEventListener("click", triggerSearch);
+  inputEl.addEventListener("keypress", e => e.key === "Enter" && triggerSearch());
+  
+  inputEl.addEventListener("input", () => {
+    const mode = document.querySelector('input[name="searchMode"]:checked')?.value || "cyberpedia";
+    const query = inputEl.value.trim();
+    const resultsContainer = document.getElementById("faqResults");
+  
+    if (!query) {
+    resultsContainer.innerHTML = "";
+    document.getElementById("loadingSpinner").style.display = "none";
+    updateSearchUI(mode); // Reinicia íconos y título
+    return;
   }
 
-  // Buscar mientras escribes solo si está en modo cyberpedia
-inputEl.addEventListener("input", () => {
-  const mode = document.querySelector('input[name="searchMode"]:checked').value;
-  if (mode === "cyberpedia" || mode === "telf") {
+    if (["cyberpedia", "telf", "wiki"].includes(mode)) {
     triggerSearch();
-  }
-});
+    }
+  });
 
-  // Delegación de clic en resultados (copiar + toggle con typing effect)
   const faqResults = document.getElementById("faqResults");
-  if (faqResults) {
-    faqResults.addEventListener("click", e => {
-      // Copiar texto
-      if (e.target.classList.contains("copy-btn")) {
-        e.stopPropagation();
-        const raw = e.target.dataset.answer;
-        const tmp = document.createElement("div");
-        tmp.innerHTML = raw;
-        const text = tmp.textContent || tmp.innerText || "";
-        navigator.clipboard.writeText(text).then(() => {
-          e.target.textContent = "✔ Copiado";
-          setTimeout(() => e.target.textContent = "📋 Copiar", 1500);
-        });
-        return;
-      }
+  faqResults.addEventListener("click", e => {
+    if (e.target.classList.contains("copy-btn")) {
+      e.stopPropagation();
+      const raw = e.target.dataset.answer;
+      const tmp = document.createElement("div");
+      tmp.innerHTML = raw;
+      const text = tmp.textContent || tmp.innerText || "";
+      navigator.clipboard.writeText(text).then(() => {
+        e.target.textContent = "✔ Copiado";
+        setTimeout(() => e.target.textContent = "📋 Copiar", 1500);
+      });
+      return;
+    }
 
-      // Toggle pregunta + efecto de escritura
-      if (e.target.classList.contains("faq-question")) {
-        const clickedQ = e.target;
-        const clickedA = clickedQ.nextElementSibling;
-        // cerrar otras
-        faqResults.querySelectorAll(".faq-question.open").forEach(q => {
-          if (q !== clickedQ) {
-            q.classList.remove("open");
-            const a = q.nextElementSibling;
-            a.classList.remove("open", "typing-effect");
-            const btn = a.querySelector(".copy-btn");
-            if (btn) btn.style.display = "none";
-          }
-        });
-        // abrir/cerrar actual
-        clickedQ.classList.toggle("open");
-        clickedA.classList.toggle("open");
+  // Toggle pregunta abierta + efecto
+    if (e.target.classList.contains("faq-question")) {
+      const clickedQ = e.target;
+      const clickedA = clickedQ.nextElementSibling;
 
-        // typing effect: aplica o quita clase
-        if (clickedA.classList.contains("open")) {
-          clickedA.classList.add("typing-effect");
-        } else {
-          clickedA.classList.remove("typing-effect");
+      faqResults.querySelectorAll(".faq-question.open").forEach(q => {
+        if (q !== clickedQ) {
+          q.classList.remove("open");
+          const a = q.nextElementSibling;
+          a.classList.remove("open", "typing-effect");
+          const btn = a.querySelector(".copy-btn");
+          if (btn) btn.style.display = "none";
         }
+      });
 
-        // mostrar u ocultar botón copiar
-        const btnCopy = clickedA.querySelector(".copy-btn");
-        if (btnCopy) {
-          btnCopy.style.display = clickedA.classList.contains("open")
-            ? "inline-block"
-            : "none";
-        }
+      clickedQ.classList.toggle("open");
+      clickedA.classList.toggle("open");
+      clickedA.classList.toggle("typing-effect");
+
+      const btnCopy = clickedA.querySelector(".copy-btn");
+      if (btnCopy) {
+        btnCopy.style.display = clickedA.classList.contains("open")
+          ? "inline-block"
+          : "none";
       }
-    });
-  }
+    }
+  });
 
-  // Botón flotante término
+  // Botón flotante y menú legal
   const termsBtn = document.querySelector(".floating-terms");
   const termsBtnMain = document.querySelector(".terms-btn");
   const termsMenu = document.getElementById("termsMenu");
@@ -563,7 +562,7 @@ inputEl.addEventListener("input", () => {
     });
   }
 
-  // Scroll suave en hashchange
+  // Scroll animado en hash
   window.addEventListener("hashchange", () => {
     const id = location.hash.slice(1);
     const el = document.getElementById(id);
@@ -574,7 +573,7 @@ inputEl.addEventListener("input", () => {
     }
   });
 
-  // Animación de estrellas
+  // Estrellas institucionales
   const stars = document.getElementById("stars");
   if (stars) {
     stars.width = innerWidth;
@@ -605,12 +604,12 @@ inputEl.addEventListener("input", () => {
     });
   }
 
-  // Toggle de características (planes, secciones, etc.)
-  document.querySelectorAll('.toggle-features').forEach(btn => {
-    btn.addEventListener('click', () => {
+  // Collapse de características en planes
+  document.querySelectorAll(".toggle-features").forEach(btn => {
+    btn.addEventListener("click", () => {
       const features = btn.previousElementSibling;
-      features.classList.toggle('collapsed');
-      btn.classList.toggle('open');
+      features.classList.toggle("collapsed");
+      btn.classList.toggle("open");
     });
   });
 });
