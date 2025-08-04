@@ -9,9 +9,9 @@
   <!-- Ícono del sitio web -->
   <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon" />
   <!-- Vincular archivo de estilos -->
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/styles/styles.css" />
   <!-- Vincular archivo Javascript -->
-   <script src="scripts.js" type="module"></script>
+   <script src="/scripts/scripts.js" type="module"></script>
 </head>
 <body>
   <!-- Estrellas y malla tecnológica -->
@@ -36,21 +36,12 @@
      <div class="login-access">
   <button id="session-btn" class="utility-btn">🔐 Acceder al sistema</button>
 
-  <!-- 👋 Bienvenida institucional trazable -->
-  <div id="bienvenida"></div>
+  <!-- 👋 Bienvenida modular trazable -->
+<div id="mensajeBienvenida" class="bienvenida-institucional"></div>
 
-  <!-- Panel dinámico por rol -->
-  <div id="panel-admin" class="panel-box admin-style">🔐 Panel administrativo</div>
-  <div id="panel-usuario" class="panel-box user-style">👤 Panel del usuario</div>
-
-
-  <script>
-    const email = localStorage.getItem("user_email");
-    if (email) {
-      document.getElementById("bienvenida").innerText = `👋 Bienvenido, ${email}`;
-    }
-  </script>
-</div>
+<!-- Paneles ocultos por defecto, activados por rol -->
+<div id="panel-admin" class="panel-box admin-style" style="display:none;"></div>
+<div id="panel-usuario" class="panel-box user-style" style="display:none;"></div>
 
     <!-- Sección de Preguntas Frecuentes -->
 <section class="faq-section">

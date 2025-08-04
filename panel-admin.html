@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Panel Administrativo</title>
+  <link rel="stylesheet" href="../assets/styles/unificado.css" />
+  <script type="module" src="../modules/initAdmin.js"></script>
+</head>
+<body class="admin-theme">
+  <main class="contenedor-panel">
+    <header>
+      <h1>Bienvenido Administrador</h1>
+      <p id="saludoAdmin">Cargando...</p>
+      <button id="btnCerrarSesion">Cerrar sesión</button>
+    </header>
+
+    <section id="zonaMetrics">
+      <h2>📊 Métricas Institucionales</h2>
+      <div id="contenedorMétricas">
+        <!-- Aquí puedes inyectar tarjetas con datos usando JS -->
+      </div>
+    </section>
+
+    <section id="zonaUsuarios">
+      <h2>👥 Gestión de Usuarios</h2>
+      <button id="btnVerUsuarios">Ver todos</button>
+      <button id="btnCrearUsuario">Nuevo usuario</button>
+      <div id="tablaUsuarios">
+        <!-- Vista JS con lista de usuarios o tabla editable -->
+      </div>
+    </section>
+
+    <section id="zonaRoles">
+      <h2>🔐 Configuración de Roles</h2>
+      <button id="btnGestionarRoles">Gestionar roles</button>
+      <div id="vistaRoles">
+        <!-- Panel reversible, activado solo si el rol lo permite -->
+      </div>
+    </section>
+  </main>
+</body>
+</html>

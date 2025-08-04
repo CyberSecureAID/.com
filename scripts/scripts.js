@@ -1,5 +1,4 @@
-import { lookupWikipedia, lookupInstitutionalByMode } from "./apis/lookupApis.js";
-import { logoutUsuario } from './authSupabase.js';
+import { lookupWikipedia, lookupInstitutionalByMode } from "../apis/lookupApis.js";
 
 let allTranslations = {};
 let currentLang = localStorage.getItem("language") || "es";

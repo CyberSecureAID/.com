@@ -76,16 +76,18 @@ button:hover {
 }
 
 .panel-box {
-  padding: 1rem;
-  margin-top: 1rem;
-  border-radius: 6px;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+  font-weight: 600;
   font-weight: bold;
+  text-align: center;
   background: linear-gradient(to right, #1e1e1e, #2a2a2a);
   color: #fff;
   opacity: 0;
   transform: scale(0.95);
   transition: opacity 0.4s ease, transform 0.3s ease;
-   display: none; /* Se activan dinámicamente si se requiere */
+  display: none; /* Se activan dinámicamente si se requiere */
 }
 
 .panel-box.show {
@@ -334,14 +336,30 @@ h1 {
   margin-top: 10px;
   text-align: center;
 }
-.login-access .utility-btn {
-  background-color: #2A9D8F;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 4px;
+
+#session-btn.utility-btn {
+  background-color: #1d2b53;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 12px 24px;
   border: none;
-  font-weight: bold;
+  border-radius: 8px;
   cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 255, 255, 0.25);
+  transition: background 0.3s ease, transform 0.2s ease;
+  letter-spacing: 0.5px;
+}
+
+#session-btn.utility-btn:hover {
+  background-color: #242e6c;
+  transform: scale(1.04);
+  box-shadow: 0 6px 18px rgba(0, 255, 255, 0.35);
+}
+
+#session-btn.utility-btn:active {
+  transform: scale(0.98);
+  background-color: #10182e;
 }
 
 /* Sección FAQ */

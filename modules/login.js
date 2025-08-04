@@ -21,6 +21,18 @@ document.getElementById("register-form").addEventListener("submit", async e => {
 
   const result = await registrarUsuario(email, pass);
   if (result) {
+    // 🧬 Obtener usuario recién creado
+    const { data: userData } = await supabase.auth.getUser();
+
+    if (userData?.user?.id) {
+      await supabase.from("profiles").insert({
+        id: userData.user.id,
+        email: email,
+        rol: "usuario" // ⚖️ Podés modular esto con una función extra
+      });
+      console.log("🆕 Perfil institucional creado");
+    }
+
     alert("✅ Registro exitoso. Podés iniciar sesión ahora.");
     toggleForm("login");
   }
