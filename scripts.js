@@ -1,4 +1,5 @@
 import { lookupWikipedia, lookupInstitutionalByMode } from "./apis/lookupApis.js";
+import { logoutUsuario } from './authSupabase.js';
 
 let allTranslations = {};
 let currentLang = localStorage.getItem("language") || "es";
@@ -613,3 +614,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// 7) Manejo de sesión
+  const btn = document.getElementById("session-btn");
+  console.log(btn); // 👈 ¿Devuelve null?
+  const email = localStorage.getItem("user_email");
+
+  if (email) {
+    // 🟢 Usuario autenticado: cambiar botón a "Cerrar sesión"
+    btn.textContent = "🔓 Cerrar sesión";
+    btn.onclick = function () {
+      localStorage.removeItem("user_email");
+      window.location.href = "login.html";
+      console.log("👋 Sesión cerrada. Redirigiendo...");
+    };
+  } else {
+    // 🔒 No autenticado: botón lleva al login
+    btn.textContent = "🔐 Acceder al sistema";
+    btn.onclick = function () {
+      window.location.href = "login.html";
+    };
+  }

@@ -32,6 +32,26 @@
       </div>  
     </header>
 
+     <!-- 🔐 Botón de login aquí -->
+     <div class="login-access">
+  <button id="session-btn" class="utility-btn">🔐 Acceder al sistema</button>
+
+  <!-- 👋 Bienvenida institucional trazable -->
+  <div id="bienvenida"></div>
+
+  <!-- Panel dinámico por rol -->
+  <div id="panel-admin" class="panel-box admin-style">🔐 Panel administrativo</div>
+  <div id="panel-usuario" class="panel-box user-style">👤 Panel del usuario</div>
+
+
+  <script>
+    const email = localStorage.getItem("user_email");
+    if (email) {
+      document.getElementById("bienvenida").innerText = `👋 Bienvenido, ${email}`;
+    }
+  </script>
+</div>
+
     <!-- Sección de Preguntas Frecuentes -->
 <section class="faq-section">
   <h2 class="section-title">Cyberpedia.AI:</h2>

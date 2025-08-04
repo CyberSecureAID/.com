@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>🔐 Acceso CyberSecureAID</title>
+  <link rel="stylesheet" href="styles-login.css" />
+  <script type="module" src="login.js"></script>
+</head>
+<body class="login-body">
+  <!-- Fondo tecnológico -->
+  <canvas class="stars" id="stars"></canvas>
+  <div class="tech-grid"></div>
+
+  <main class="login-container">
+    <img src="assets/icons/logo-csid.png" alt="Logo CSID" class="logo-img" />
+    <h1 class="login-title gradient-text">
+    <a href="index.html" class="logo-link">CyberSecureAID</a>
+    </h1>
+    <p class="login-subtitle">CSID</p>
+    <p class="login-description">🔐 Acceso institucional seguro</p>
+
+    <!-- Formulario de login -->
+    <form id="login-form" class="auth-form">
+      <input type="email" id="email" placeholder="📧 Correo institucional" required />
+      <input type="password" id="password" placeholder="🔑 Clave de acceso" required />
+      <button type="submit" class="utility-btn">Ingresar</button>
+      
+      <p class="extra-link">
+        ¿No tenés cuenta?
+        <a href="#" id="toggle-to-register" class="link-registro">Crear cuenta</a>
+      </p>
+    </form>
+
+    <!-- Formulario de registro -->
+    <form id="register-form" class="auth-form" style="display: none;">
+      <input type="email" id="new-email" placeholder="📧 Nuevo correo institucional" required />
+      <input type="password" id="new-pass" placeholder="🔑 Nueva contraseña" required />
+      <button type="submit" class="utility-btn">Registrarse</button>
+      
+      <p class="extra-link">
+        ¿Ya tenés cuenta?
+        <a href="#" id="toggle-to-login" class="link-registro">Volver a login</a>
+      </p>
+    </form>
+  </main>
+</body>
+</html>

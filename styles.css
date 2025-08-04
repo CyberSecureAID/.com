@@ -26,6 +26,85 @@ body {
   overflow-x: hidden;
 }
 
+form {
+  max-width: 400px;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 12px 20px;
+  background: #2A9D8F;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #21867A;
+}
+
+#bienvenida {
+  font-weight: bold;
+  color: #00c8ff;
+  margin-top: 10px;
+  font-family: monospace;
+  text-align: center;
+}
+
+#panel-admin, #panel-usuario {
+  transition: opacity 0.4s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+#panel-admin.show, #panel-usuario.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.panel-box {
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  background: linear-gradient(to right, #1e1e1e, #2a2a2a);
+  color: #fff;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.4s ease, transform 0.3s ease;
+}
+
+.panel-box.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.admin-style { border: 2px solid #ffdb58; }
+.user-style  { border: 2px solid #58dfff; }
+
+.utility-link {
+  display: inline-block;
+  margin-top: 1em;
+  color: #0077cc;
+  text-decoration: none;
+}
+.utility-link:hover {
+  text-decoration: underline;
+}
+
 @keyframes pulseBG {
   0% { background-color: #0f0f23; }
   100% { background-color: #080820; }
@@ -241,6 +320,20 @@ h1 {
 .terms-dropdown a:hover {
   background: #f2f2f23e;
   color: gold;
+}
+
+.login-access {
+  margin-top: 10px;
+  text-align: center;
+}
+.login-access .utility-btn {
+  background-color: #2A9D8F;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 /* Sección FAQ */

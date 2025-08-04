@@ -1,0 +1,135 @@
+/* ---------------------------
+   Estilo institucional login
+   CyberSecureAID
+---------------------------- */
+
+body.login-body {
+  background-color: #0a0a0a;
+  font-family: 'Segoe UI', sans-serif;
+  color: #e0e0e0;
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas#stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.tech-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-image: url("img/grid.png"); /* reemplazá con tu malla institucional */
+  background-size: cover;
+  opacity: 0.05;
+}
+
+.login-container {
+  position: relative;
+  z-index: 2;
+  background-color: rgba(20, 20, 20, 0.85);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,255,255,0.15);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+}
+
+.login-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(to right, #00c8ff, #ff00cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.login-subtitle {
+  font-size: 1.2rem;
+  color: #aaa;
+  margin-bottom: 0.5rem;
+}
+
+.login-description {
+  font-size: 0.95rem;
+  color: #ccc;
+  margin-bottom: 2rem;
+}
+
+.logo-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.logo-img {
+  width: 80px; /* ajustá según tu diseño */
+  margin-bottom: 0.5rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #1a1a1a;
+  color: #fff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.auth-form input:focus {
+  box-shadow: 0 0 8px rgba(0, 200, 255, 0.5);
+}
+
+.utility-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #00c8ff;
+  color: #000;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.utility-btn:hover {
+  background-color: #00a0cc;
+}
+
+.extra-link {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.link-registro {
+  color: #00c8ff;
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: 0.25rem;
+}
+
+.link-registro:hover {
+  text-decoration: underline;
+}
