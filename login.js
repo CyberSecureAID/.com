@@ -1,4 +1,4 @@
-import { registrarUsuario } from "./authSupabase.js";
+import { loginUsuario, registrarUsuario } from "./authSupabase.js";
 
 // login
 document.getElementById("login-form").addEventListener("submit", async e => {
