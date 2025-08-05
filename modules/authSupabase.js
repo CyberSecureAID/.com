@@ -1,15 +1,11 @@
+import { guardarSesion } from '../modules/sesion.js'
+
 const URL = "https://kirzvpcqtmrpmwsrutsi.supabase.co";
 const API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtpcnp2cGNxdG1ycG13c3J1dHNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM3NjM5MjcsImV4cCI6MjA2OTMzOTkyN30.sGiBi5YdFGCdHVqVFO3RnfubLsww3v-8E5W07AUJQwA"; 
 
 // 📌 Validación sintáctica de correo
 export function esCorreoValido(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-// 💾 Persistencia institucional local
-function guardarSesion(email, token) {
-  localStorage.setItem("user_email", email);
-  console.log(`🔐 Sesión iniciada: ${email} | Token: ${token}`);
 }
 
 // 🚀 Redirección coherente al dashboard principal
@@ -37,7 +33,7 @@ export async function loginUsuario(email, password) {
     const data = await res.json();
 
     if (res.ok && data?.access_token) {
-      guardarSesion(email, data.access_token);
+      guardarSesion({ correo: email, rol: 'usuario' }); // ✅ Uso modular
       redireccionarDashboard();
       return data;
     } else {
@@ -81,7 +77,7 @@ export async function registrarUsuario(email, password) {
 
     if (res.ok && data.user) {
       console.log("✅ Registro exitoso:", data.user.email);
-      return data; // El perfil se crea desde login.js usando función modular
+      return data;
     } else {
       alert("⚠️ Registro fallido");
       console.warn("❌ Detalles:", data);
@@ -94,7 +90,7 @@ export async function registrarUsuario(email, password) {
   }
 }
 
-// 🧱 Modular: Crear perfil institucional con rol
+// 🧱 Crear perfil institucional con rol
 export async function crearPerfilInstitucional(id, email, rol = "usuario") {
   if (!id || !email) {
     console.warn("⚠️ Datos insuficientes para perfil.");
@@ -105,7 +101,7 @@ export async function crearPerfilInstitucional(id, email, rol = "usuario") {
     method: "POST",
     headers: {
       "apikey": API_KEY,
-      "Authorization": `Bearer ${API_KEY}`, // ⚠️ En frontend puro, se usa la API key
+      "Authorization": `Bearer ${API_KEY}`,
       "Content-Type": "application/json",
       "Prefer": "return=minimal"
     },
