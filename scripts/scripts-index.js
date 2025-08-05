@@ -2,18 +2,34 @@
 
 import { mostrarBienvenida } from '../components/bienvenida.js'
 import { alternarPanel } from '../components/panelPorRol.js'
-import { obtenerSesion } from '../modules/sesion.js'
+import { obtenerSesion, cerrarSesion } from '../modules/sesion.js'
 
 // 🔐 Inicializar sesión y vista del usuario
 document.addEventListener('DOMContentLoaded', () => {
   const sesion = obtenerSesion()
+  const btnSesion = document.getElementById('session-btn')
 
   if (sesion && sesion.correo) {
     mostrarBienvenida()
     alternarPanel()
     inicializarIdioma()
+
+    if (btnSesion) {
+      btnSesion.textContent = '🔓 Cerrar sesión'
+      btnSesion.onclick = () => {
+        cerrarSesion()
+        window.location.href = 'login.html'
+      }
+    }
   } else {
     console.warn('No hay sesión activa. Se requiere login para mostrar contenido.')
+
+    if (btnSesion) {
+      btnSesion.textContent = '🔐 Acceder al sistema'
+      btnSesion.onclick = () => {
+        window.location.href = 'login.html'
+      }
+    }
   }
 })
 
