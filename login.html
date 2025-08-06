@@ -3,43 +3,103 @@
 <head>
   <meta charset="UTF-8" />
   <title>🔐 Acceso CyberSecureAID</title>
+  <!-- Ícono del sitio web -->
+  <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="styles/styles-login.css" />
+
+  <!-- 1) SDK ESM de Supabase -->
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+    window.supabase = createClient(
+      'https://kirzvpcqtmrpmwsrutsi.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtpcnp2cGNxdG1ycG13c3J1dHNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM3NjM5MjcsImV4cCI6MjA2OTMzOTkyN30.sGiBi5YdFGCdHVqVFO3RnfubLsww3v-8E5W07AUJQwA'
+    )
+  </script>
+
+  <script src="scripts/scripts-index.js" type="module"></script>
+  <!-- 2) Módulo de autenticación -->
+  <script type="module" src="modules/authSupabase.js"></script>
+
+  <!-- 3) Lógica de login/registro -->
   <script type="module" src="modules/login.js"></script>
+  
 </head>
 <body class="login-body">
-  <!-- Fondo tecnológico -->
   <canvas class="stars" id="stars"></canvas>
   <div class="tech-grid"></div>
 
   <main class="login-container">
-    <img src="assets/icons/logo-csid.png" alt="Logo CSID" class="logo-img" />
-    <h1 class="login-title gradient-text">
-    <a href="index.html" class="logo-link">CyberSecureAID</a>
+    <a href="index.html" class="logo-link">
+      <img src="assets/icons/logo_CSID.png" alt="Logo CSID" class="logo-img" />
+    </a>
+    <h1 id="login-title" class="login-title gradient-text">
+     Iniciar sesión CSID
     </h1>
-    <p class="login-subtitle">CSID</p>
-    <p class="login-description">🔐 Acceso institucional seguro</p>
+    <p class="login-description">🔐 Acceso al sistema</p>
 
-    <!-- Formulario de login -->
+    <!-- Login -->
     <form id="login-form" class="auth-form">
-      <input type="email" id="email" placeholder="📧 Correo institucional" required />
-      <input type="password" id="password" placeholder="🔑 Clave de acceso" required />
-      <button type="submit" class="utility-btn">Ingresar</button>
-      
+      <input
+        type="email"
+        id="email"
+        placeholder="📧 Correo institucional"
+        required
+      />
+      <input
+        type="password"
+        id="password"
+        placeholder="🔑 Clave de acceso"
+        required
+      />
+      <button type="submit" id="login-btn" class="utility-btn">
+        <span id="login-btn-text">Ingresar</span>
+        <span
+          id="login-spinner"
+          class="spinner"
+          style="display: none;"
+        ></span>
+      </button>
+      <div id="login-message" class="message"></div>
       <p class="extra-link">
         ¿No tenés cuenta?
-        <a href="#" id="toggle-to-register" class="link-registro">Crear cuenta</a>
+        <a href="#" id="toggle-to-register" class="link-registro"
+          >Crear cuenta</a
+        >
       </p>
     </form>
 
-    <!-- Formulario de registro -->
-    <form id="register-form" class="auth-form" style="display: none;">
-      <input type="email" id="new-email" placeholder="📧 Nuevo correo institucional" required />
-      <input type="password" id="new-pass" placeholder="🔑 Nueva contraseña" required />
-      <button type="submit" class="utility-btn">Registrarse</button>
-      
+    <!-- Registro -->
+    <form
+      id="register-form"
+      class="auth-form"
+      style="display: none;"
+    >
+      <input
+        type="email"
+        id="new-email"
+        placeholder="📧 Nuevo correo institucional"
+        required
+      />
+      <input
+        type="password"
+        id="new-pass"
+        placeholder="🔑 Nueva contraseña"
+        required
+      />
+      <button type="submit" id="register-btn" class="utility-btn">
+        <span id="register-btn-text">Registrarse</span>
+        <span
+          id="register-spinner"
+          class="spinner"
+          style="display: none;"
+        ></span>
+      </button>
+      <div id="register-message" class="message"></div>
       <p class="extra-link">
         ¿Ya tenés cuenta?
-        <a href="#" id="toggle-to-login" class="link-registro">Volver a login</a>
+        <a href="#" id="toggle-to-login" class="link-registro"
+          >Volver a login</a
+        >
       </p>
     </form>
   </main>

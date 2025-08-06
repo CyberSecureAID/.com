@@ -33,16 +33,20 @@
       </div>  
     </header>
 
-     <!-- 🔐 Botón de login aquí -->
-     <div class="login-access">
-  <button id="session-btn" class="utility-btn">🔐 Acceder al sistema</button>
+    <!-- Módulo de autenticación -->
+    <div id="auth-module" class="auth-container"></div>
 
-  <!-- 👋 Bienvenida modular trazable -->
-<div id="mensajeBienvenida" class="bienvenida-institucional"></div>
+    <!-- 🔐 Botón de login aquí -->
+    <div class="login-access">
+    <button id="session-btn" class="utility-btn">🔐 Acceder al sistema</button>
 
-<!-- Paneles ocultos por defecto, activados por rol -->
-<div id="panel-admin" class="panel-box admin-style" style="display:none;"></div>
-<div id="panel-usuario" class="panel-box user-style" style="display:none;"></div>
+   <!-- 👋 Bienvenida modular trazable -->
+   <div id="mensajeBienvenida" class="bienvenida-institucional"></div>
+
+   <!-- Paneles ocultos por defecto, activados por rol -->
+   <div id="panel-admin" style="display: none;">👑 Panel para admins</div>
+   <div id="panel-usuario" style="display: none;">👤 Panel para usuarios</div>
+  </div>
 
     <!-- Sección de Preguntas Frecuentes -->
 <section class="faq-section">
@@ -339,6 +343,8 @@
     </section>
     
     <!-- Sección de estadísticas -->
+  <div class="trust-module">
+
     <section class="stats-section">
       <div class="stat-item">
         <div class="stat-number">327+</div>
@@ -361,20 +367,23 @@
     <!-- Sección de testimonios -->
     <section class="testimonials">
       <h2 class="section-title" data-key="Información Importante">Información Importante</h2>
+
       <div class="testimonial-card">
         <div class="testimonial-text" data-key="testimonio_1">
           "Durante una operación de rastreo, el sujeto generalmente se mueve, y su ubicación puede cambiar en pocas horas tras el reporte inicial del análisis."
         </div>
-        <div class="testimonial-author"></div>
+        <span class="testimonial-author" data-key="autor_testimonio_1" data-role="analista">🧑‍💼 Analista Forense</span>
       </div>
+
       <div class="testimonial-card">
         <div class="testimonial-text" data-key="testimonio_2">
           "Es importante tener en cuenta que el tiempo es esencial; una respuesta rápida puede marcar la diferencia en la efectividad del rastreo y análisis forense."
         </div>
-        <div class="testimonial-author"></div>
+        <span class="testimonial-author" data-key="autor_testimonio_2" data-role="coordinador">🧑‍💻 Coordinador Técnico CSID</span>
       </div>
     </section>
-
+  </div>
+  
     <!-- Pie de página -->
     <footer>
       <p data-key="Servicios Profesionales de Investigación Digital">Servicios Profesionales de Investigación Digital</p>
@@ -391,12 +400,11 @@
       <path fill="currentColor" d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
     </svg>
     <span class="terms-text" data-key="terms_label">Términos y Condiciones</span>
-  </button>
-  <div id="termsMenu" class="terms-dropdown">
+   </button>
+   <div id="termsMenu" class="terms-dropdown">
     <a href="docs/Terminos_CyberSecureAID.pdf" target="_blank" data-key="download_pdf">📄 Descargar PDF</a>
     <a href="legal.html" target="_blank" data-key="legal_clause">⚖️ Cláusula Legal</a>
+   </div>
   </div>
-</div>
-
-</body>
+ </body>
 </html>
