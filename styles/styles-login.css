@@ -62,12 +62,6 @@ canvas#stars {
   -webkit-text-fill-color: transparent;
 }
 
-.login-subtitle {
-  font-size: 1.2rem;
-  color: #aaa;
-  margin-bottom: 0.5rem;
-}
-
 .login-description {
   font-size: 0.95rem;
   color: #ccc;
@@ -80,7 +74,7 @@ canvas#stars {
 }
 
 .logo-img {
-  width: 150px; /* ajustá según tu diseño */
+  width: 180px; /* ajustá según tu diseño */
   margin-bottom: 0.5rem;
   display: block;
   margin-left: auto;
@@ -88,7 +82,7 @@ canvas#stars {
 }
 
 .auth-form input {
-  width: 100%;
+  width: 55%;
   padding: 0.75rem;
   margin-bottom: 1rem;
   border-radius: 8px;
@@ -105,7 +99,7 @@ canvas#stars {
 }
 
 .utility-btn {
-  width: 100%;
+  width: 60%;
   padding: 0.75rem;
   background-color: #00c8ff;
   color: #000;
